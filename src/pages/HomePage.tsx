@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
@@ -14,7 +14,9 @@ import {
   Star,
   CheckCircle,
   Truck,
-  RotateCcw
+  RotateCcw,
+  Play,
+  Pause
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -22,11 +24,32 @@ export const HomePage: React.FC = () => {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [quickViewColor, setQuickViewColor] = useState<ColorVariant | undefined>(undefined);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Guarantee programmatic muted autoplay across all browsers
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.defaultMuted = true;
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          setIsPlaying(false);
+        });
+    }
+  }, []);
 
   const handleVideoTimeUpdate = () => {
     const video = videoRef.current;
     if (!video) return;
+
+    if (video.currentTime < 1.0 && isTransitioning) {
+      setIsTransitioning(false);
+    }
 
     // Smoothly fade before the 14.5s watermark/outro text and loop cleanly back to 0s (no sound)
     if (video.currentTime >= 13.4 && !isTransitioning) {
@@ -34,8 +57,21 @@ export const HomePage: React.FC = () => {
     }
     if (video.currentTime >= 13.8) {
       video.currentTime = 0;
-      video.play().catch(() => {});
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
       setTimeout(() => setIsTransitioning(false), 150);
+    }
+  };
+
+  const togglePlay = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.muted = true;
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
+    } else {
+      video.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -45,7 +81,7 @@ export const HomePage: React.FC = () => {
     if (!video) return;
     setIsTransitioning(false);
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.play().then(() => setIsPlaying(true)).catch(() => {});
   };
 
   const originalSneaker = PRODUCTS[0];
@@ -152,8 +188,8 @@ export const HomePage: React.FC = () => {
 
               {/* Video Stage Container (aspect trims out bottom screen-recording player bar cleanly) */}
               <div
-                onClick={() => navigate('/shop')}
-                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-[#050807] group"
+                onClick={togglePlay}
+                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-[#050807] group select-none"
               >
                 <video
                   ref={videoRef}
@@ -162,6 +198,9 @@ export const HomePage: React.FC = () => {
                   autoPlay
                   muted
                   playsInline
+                  loop
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
                   onTimeUpdate={handleVideoTimeUpdate}
                   className={`w-full h-full object-cover object-top transition-opacity duration-300 ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
@@ -170,9 +209,21 @@ export const HomePage: React.FC = () => {
 
                 {/* Seamless Edge & Bottom Blending Vignettes */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050A08] via-[#050A08]/40 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_55px_rgba(0,0,0,0.85)] rounded-3xl" />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_55px_rgba(0,0,0,0.85)] rounded-3xl pointer-events-none" />
 
-                {/* Interactive Replay Control (Sound Venda - Permanently Muted) */}
+                {/* Big Center Play Icon (if paused or browser blocked autoplay) */}
+                {!isPlaying && (
+                  <div
+                    onClick={togglePlay}
+                    className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer z-20 group"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-forest/90 hover:bg-forest text-white flex items-center justify-center shadow-2xl transition-transform group-hover:scale-110 border border-white/20">
+                      <Play className="w-7 h-7 fill-white translate-x-0.5" />
+                    </div>
+                  </div>
+                )}
+
+                {/* Interactive Controls (Replay + Sound Venda - Permanently Muted) */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
                   <button
                     onClick={handleReplay}
