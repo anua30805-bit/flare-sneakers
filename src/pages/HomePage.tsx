@@ -14,16 +14,13 @@ import {
   Star,
   CheckCircle,
   Truck,
-  RotateCcw,
-  Volume2,
-  VolumeX
+  RotateCcw
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
   const { navigate, navigateToProduct } = useRouter();
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [quickViewColor, setQuickViewColor] = useState<ColorVariant | undefined>(undefined);
-  const [isMuted, setIsMuted] = useState(true);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -31,11 +28,11 @@ export const HomePage: React.FC = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Smoothly fade before the 14.5s watermark/outro text and loop cleanly back to 0s
-    if (video.currentTime >= 13.4 && !isTransitioning) {
+    // Smoothly fade before the 15.0s outro and loop cleanly back to 0s (no sound)
+    if (video.currentTime >= 14.4 && !isTransitioning) {
       setIsTransitioning(true);
     }
-    if (video.currentTime >= 13.8) {
+    if (video.currentTime >= 14.8) {
       video.currentTime = 0;
       video.play().catch(() => {});
       setTimeout(() => setIsTransitioning(false), 150);
@@ -49,14 +46,6 @@ export const HomePage: React.FC = () => {
     setIsTransitioning(false);
     video.currentTime = 0;
     video.play().catch(() => {});
-  };
-
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = !isMuted;
-    setIsMuted(!isMuted);
   };
 
   const originalSneaker = PRODUCTS[0];
@@ -154,50 +143,41 @@ export const HomePage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
-            {/* Cinematic Studio Smoke Pedestal Sneaker Animation Stage */}
-            <div className="relative w-full max-w-2xl flex items-center justify-center">
+            {/* Cinematic High-Top Sneaker Showcase Stage */}
+            <div className="relative w-full max-w-[380px] sm:max-w-[420px] flex items-center justify-center">
               {/* Ambient Floor Shadow / Studio Light Halo */}
-              <div className="absolute -inset-6 bg-radial from-emerald-400/15 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
+              <div className="absolute -inset-6 bg-radial from-red-600/10 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
 
-              {/* Video Stage Container (aspect trims out bottom screen-recording player bar cleanly) */}
+              {/* Video Stage Container */}
               <div
                 onClick={() => navigate('/shop')}
-                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-[#050807] group"
+                className="relative z-10 w-full aspect-[390/644] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-black group"
               >
                 <video
                   ref={videoRef}
-                  src="/videos/hero-showcase.mp4"
-                  poster="/images/hero-sneaker.jpg"
+                  src="/videos/hero-sneaker-showcase.mp4"
                   autoPlay
                   muted
                   playsInline
                   onTimeUpdate={handleVideoTimeUpdate}
-                  className={`w-full h-full object-cover object-top transition-opacity duration-300 ${
+                  className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
                   }`}
                 />
 
-                {/* Seamless Edge & Bottom Blending Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050A08] via-[#050A08]/40 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_55px_rgba(0,0,0,0.85)] rounded-3xl" />
+                {/* Seamless Edge Vignettes */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_45px_rgba(0,0,0,0.85)] rounded-3xl" />
 
-                {/* Interactive Sound & Replay Controls */}
+                {/* Interactive Replay Control (Sound Venda - Permanently Muted) */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
                   <button
                     onClick={handleReplay}
-                    className="p-2.5 rounded-full bg-black/50 hover:bg-forest text-white/90 hover:text-white backdrop-blur-md border border-white/15 transition-all"
-                    title="Replay Animation"
-                    aria-label="Replay Animation"
+                    className="p-2.5 rounded-full bg-black/60 hover:bg-forest text-white/90 hover:text-white backdrop-blur-md border border-white/15 transition-all shadow-md"
+                    title="Replay Showcase"
+                    aria-label="Replay Showcase"
                   >
                     <RotateCcw className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={toggleMute}
-                    className="p-2.5 rounded-full bg-black/50 hover:bg-forest text-white/90 hover:text-white backdrop-blur-md border border-white/15 transition-all"
-                    title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
-                    aria-label={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
-                  >
-                    {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-emerald-300" />}
                   </button>
                 </div>
               </div>
