@@ -274,12 +274,12 @@ export const AboutContactPage: React.FC = () => {
                       WhatsApp Priority Support
                     </h4>
                     <a
-                      href="https://wa.me/919876543210"
+                      href="https://wa.me/919207560571"
                       target="_blank"
                       rel="noreferrer"
                       className="text-xs text-forest font-bold hover:underline mt-1 block"
                     >
-                      +91 98765 43210
+                      +91 92075 60571
                     </a>
                     <p className="text-[11px] text-gray-400">Mon - Sat: 10:00 AM – 8:00 PM IST</p>
                   </div>
@@ -383,7 +383,7 @@ export const AboutContactPage: React.FC = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 92075 60571"
                         className="w-full bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs text-brand-black focus:outline-none focus:bg-white focus:border-forest"
                       />
                     </div>

@@ -250,7 +250,7 @@ export const CheckoutModal: React.FC = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="9876543210"
+                        placeholder="9207560571"
                         maxLength={10}
                         className={`w-full bg-gray-50 border rounded-xl px-3.5 py-2.5 text-xs text-brand-black focus:outline-none focus:bg-white focus:border-forest ${
                           errors.phone ? 'border-rose-500' : 'border-gray-200'
