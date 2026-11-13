@@ -28,11 +28,11 @@ export const HomePage: React.FC = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Smoothly fade before the 15.0s outro and loop cleanly back to 0s (no sound)
-    if (video.currentTime >= 14.4 && !isTransitioning) {
+    // Smoothly fade before the 14.5s watermark/outro text and loop cleanly back to 0s (no sound)
+    if (video.currentTime >= 13.4 && !isTransitioning) {
       setIsTransitioning(true);
     }
-    if (video.currentTime >= 14.8) {
+    if (video.currentTime >= 13.8) {
       video.currentTime = 0;
       video.play().catch(() => {});
       setTimeout(() => setIsTransitioning(false), 150);
@@ -135,39 +135,42 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-20 sm:space-y-28">
-      {/* 1. CINEMATIC HERO SECTION (Animated Studio Showcase on Deep Forest Green) */}
+      {/* 1. CINEMATIC HERO SECTION (Volumetric Smoke Studio Pedestal Animation) */}
       <section className="relative bg-gradient-to-b from-[#040B09] via-[#002820] to-forest overflow-hidden text-white pt-6 sm:pt-10 pb-14 sm:pb-20">
-        {/* Atmospheric Studio Glow Background Gradients */}
+        {/* Atmospheric Studio Glow Background Gradients - Amber & Cyan lighting matching the smoke video */}
+        <div className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-amber-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-1/3 -right-20 w-[420px] h-[420px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-emerald-400/10 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
         <div className="absolute bottom-0 right-10 w-[420px] h-[420px] bg-forest-dark/80 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
-            {/* Cinematic High-Top Sneaker Showcase Stage */}
-            <div className="relative w-full max-w-[380px] sm:max-w-[420px] flex items-center justify-center">
+            {/* Cinematic Studio Smoke Pedestal Sneaker Animation Stage */}
+            <div className="relative w-full max-w-2xl flex items-center justify-center">
               {/* Ambient Floor Shadow / Studio Light Halo */}
-              <div className="absolute -inset-6 bg-radial from-red-600/10 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
+              <div className="absolute -inset-6 bg-radial from-emerald-400/15 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
 
-              {/* Video Stage Container */}
+              {/* Video Stage Container (aspect trims out bottom screen-recording player bar cleanly) */}
               <div
                 onClick={() => navigate('/shop')}
-                className="relative z-10 w-full aspect-[390/644] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-black group"
+                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-[#050807] group"
               >
                 <video
                   ref={videoRef}
-                  src="/videos/hero-sneaker-showcase.mp4"
+                  src="/videos/hero-showcase.mp4"
+                  poster="/images/hero-sneaker.jpg"
                   autoPlay
                   muted
                   playsInline
                   onTimeUpdate={handleVideoTimeUpdate}
-                  className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
+                  className={`w-full h-full object-cover object-top transition-opacity duration-300 ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
                   }`}
                 />
 
-                {/* Seamless Edge Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_45px_rgba(0,0,0,0.85)] rounded-3xl" />
+                {/* Seamless Edge & Bottom Blending Vignettes */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050A08] via-[#050A08]/40 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_55px_rgba(0,0,0,0.85)] rounded-3xl" />
 
                 {/* Interactive Replay Control (Sound Venda - Permanently Muted) */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
