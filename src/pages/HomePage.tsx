@@ -25,6 +25,7 @@ export const HomePage: React.FC = () => {
   const [quickViewColor, setQuickViewColor] = useState<ColorVariant | undefined>(undefined);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [activeVideo, setActiveVideo] = useState<'sneaker' | 'smoke'>('sneaker');
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Guarantee programmatic muted autoplay across all browsers
@@ -41,7 +42,7 @@ export const HomePage: React.FC = () => {
           setIsPlaying(false);
         });
     }
-  }, []);
+  }, [activeVideo]);
 
   const handleVideoTimeUpdate = () => {
     const video = videoRef.current;
@@ -51,11 +52,14 @@ export const HomePage: React.FC = () => {
       setIsTransitioning(false);
     }
 
-    // Smoothly fade before the 14.5s watermark/outro text and loop cleanly back to 0s (no sound)
-    if (video.currentTime >= 13.4 && !isTransitioning) {
+    const cutoffTime = activeVideo === 'sneaker' ? 14.2 : 13.4;
+    const loopTime = activeVideo === 'sneaker' ? 14.6 : 13.8;
+
+    // Smoothly fade before end screens/watermarks and loop cleanly back to 0s (no sound)
+    if (video.currentTime >= cutoffTime && !isTransitioning) {
       setIsTransitioning(true);
     }
-    if (video.currentTime >= 13.8) {
+    if (video.currentTime >= loopTime) {
       video.currentTime = 0;
       video.play().then(() => setIsPlaying(true)).catch(() => {});
       setTimeout(() => setIsTransitioning(false), 150);
@@ -173,28 +177,36 @@ export const HomePage: React.FC = () => {
     <div className="space-y-20 sm:space-y-28">
       {/* 1. CINEMATIC HERO SECTION (Volumetric Smoke Studio Pedestal Animation) */}
       <section className="relative bg-gradient-to-b from-[#040B09] via-[#002820] to-forest overflow-hidden text-white pt-6 sm:pt-10 pb-14 sm:pb-20">
-        {/* Atmospheric Studio Glow Background Gradients - Amber & Cyan lighting matching the smoke video */}
-        <div className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-amber-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
-        <div className="absolute top-1/3 -right-20 w-[420px] h-[420px] bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-emerald-400/10 rounded-full blur-[120px] pointer-events-none animate-pulse-subtle" />
+        {/* Studio Softbox Lighting - Left Amber Glow & Right Cyan Glow matching the studio smoke video */}
+        <div className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-amber-500/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-1/3 -right-20 w-[420px] h-[420px] bg-cyan-400/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-emerald-400/10 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-0 right-10 w-[420px] h-[420px] bg-forest-dark/80 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
-            {/* Cinematic Studio Smoke Pedestal Sneaker Animation Stage */}
-            <div className="relative w-full max-w-2xl flex items-center justify-center">
-              {/* Ambient Floor Shadow / Studio Light Halo */}
-              <div className="absolute -inset-6 bg-radial from-emerald-400/15 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
+            {/* Cinematic Sneaker Animation Stage */}
+            <div
+              className={`relative w-full flex items-center justify-center transition-all duration-500 ${
+                activeVideo === 'sneaker' ? 'max-w-[390px] sm:max-w-[420px]' : 'max-w-2xl'
+              }`}
+            >
+              {/* Volumetric Studio Smoke Clouds (Swirling behind the shoe pedestal) */}
+              <div className="absolute -inset-10 bg-radial from-white/10 via-emerald-400/10 to-transparent blur-3xl pointer-events-none animate-pulse-subtle" />
+              <div className="absolute -bottom-8 inset-x-4 h-32 bg-gradient-to-t from-emerald-500/20 via-cyan-500/10 to-transparent blur-2xl pointer-events-none" />
 
-              {/* Video Stage Container (aspect trims out bottom screen-recording player bar cleanly) */}
+              {/* Video Stage Container */}
               <div
                 onClick={togglePlay}
-                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.85)] border border-white/10 bg-[#050807] group select-none"
+                className={`relative z-10 w-full rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.92)] border border-white/10 bg-black group select-none transition-all duration-300 ${
+                  activeVideo === 'sneaker' ? 'aspect-[390/644]' : 'aspect-[772/590]'
+                }`}
               >
                 <video
                   ref={videoRef}
-                  src="/videos/hero-showcase.mp4"
-                  poster="/images/hero-sneaker.jpg"
+                  key={activeVideo}
+                  src={activeVideo === 'sneaker' ? '/videos/hero-sneaker-showcase.mp4' : '/videos/hero-showcase.mp4'}
+                  poster={activeVideo === 'sneaker' ? '/images/hero-sneaker.jpg' : '/images/hero-sneaker.jpg'}
                   autoPlay
                   muted
                   playsInline
@@ -202,13 +214,13 @@ export const HomePage: React.FC = () => {
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
                   onTimeUpdate={handleVideoTimeUpdate}
-                  className={`w-full h-full object-cover object-top transition-opacity duration-300 ${
-                    isTransitioning ? 'opacity-0' : 'opacity-100'
-                  }`}
+                  className={`w-full h-full object-cover transition-opacity duration-300 ${
+                    activeVideo === 'sneaker' ? 'object-center' : 'object-top'
+                  } ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                 />
 
-                {/* Seamless Edge & Bottom Blending Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050A08] via-[#050A08]/40 to-transparent" />
+                {/* Seamless Edge Vignettes */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black via-black/40 to-transparent" />
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_55px_rgba(0,0,0,0.85)] rounded-3xl pointer-events-none" />
 
                 {/* Big Center Play Icon (if paused or browser blocked autoplay) */}
@@ -235,6 +247,38 @@ export const HomePage: React.FC = () => {
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Showcase Animation Switcher Pills (User can toggle between Chicago High-Top 360° and Smoke Pedestal) */}
+            <div className="mt-5 flex items-center justify-center gap-2 z-20">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveVideo('sneaker');
+                  setIsTransitioning(false);
+                }}
+                className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 ${
+                  activeVideo === 'sneaker'
+                    ? 'bg-white text-forest shadow-lg scale-105'
+                    : 'bg-white/10 hover:bg-white/20 text-white/80 border border-white/15'
+                }`}
+              >
+                <span>👟 Chicago High-Top 360°</span>
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveVideo('smoke');
+                  setIsTransitioning(false);
+                }}
+                className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 ${
+                  activeVideo === 'smoke'
+                    ? 'bg-white text-forest shadow-lg scale-105'
+                    : 'bg-white/10 hover:bg-white/20 text-white/80 border border-white/15'
+                }`}
+              >
+                <span>💨 Smoke Cloud Pedestal</span>
+              </button>
             </div>
 
             {/* CTAs */}

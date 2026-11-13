@@ -148,10 +148,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'flare-apex-street-hightop',
-    name: 'FLARE Apex Street High-Top',
+    name: 'FLARE Apex Street High-Top (Chicago Red & White)',
     modelCode: 'FLR-02-APX',
     collection: 'High-Top Sneakers',
-    tagline: 'Architectural Streetwear High-Top with Tactical Presence',
+    tagline: '360° Architectural Streetwear High-Top with Iconic Presence',
     price: 4999,
     originalPrice: 6999,
     rating: 4.8,
@@ -161,24 +161,24 @@ export const PRODUCTS: Product[] = [
     isNewArrival: false,
     stockQuantity: 28,
     description:
-      'Engineered for commanding street presence. The Apex High-Top combines tactical ballistic nylon with heavy-gauge oiled nubuck leather and a sculpted geometric lug sole. Padded ankle architecture delivers superior support without restricting mobility.',
+      'Engineered for commanding street presence. The Apex High-Top combines tactical full-grain leather uppers in iconic Chicago Red, Crisp White, and Deep Black with a sculpted geometric sole and padded ankle architecture.',
     story:
-      'Created for the urban explorer who demands edge and substance. Inspired by brutalist architecture and technical combat gear, the Apex High-Top represents the boldest silhouette in our men\'s lineup. Built tough for city pavements and styled for effortless street luxury.',
+      'Created for the urban explorer who demands edge and substance. Inspired by iconic court heritage and brutalist architecture, the Apex High-Top in Chicago Red & White represents the boldest silhouette in our men\'s lineup.',
     features: [
       'Padded anatomical high-top collar with Achilles-tendon flex notch',
-      'Heavy-duty oiled matte nubuck leather paired with Cordura® ripstop',
-      'Sculpted angular EVA midsole with multi-surface lug tread',
-      'Industrial matte-black speed-lacing eyelets with round reinforced cords',
+      'Full-grain leather uppers in iconic Chicago Red, Black & White',
+      'High-traction vulcanized cupsole with 360° stitched edge',
+      'Reinforced speed-lacing eyelets with authentic cotton-blend cords',
       'Weather-resistant hydrophobic outer coating against dust and splashes',
       'Reinforced heel counter with pull loop for effortless on-and-off wear'
     ],
     specifications: {
-      upperMaterial: 'Oiled Matte Nubuck Leather & High-Density Ballistic Nylon',
-      soleMaterial: 'Sculpted Geometric Lug Rubber with High-Density EVA core',
-      closureType: 'Speed-Lace High-Tension Eyelet System',
+      upperMaterial: 'Premium Full-Grain Leather & Ballistic Accents',
+      soleMaterial: 'Vulcanized High-Traction Rubber with EVA Cushion',
+      closureType: 'High-Tension Speed-Lace System',
       cushioning: 'ImpactShield™ Shock-Absorbing Midsole',
       weight: '465g (Single shoe, Size UK 8)',
-      careInstructions: 'Wipe clean with moist sponge. Treat nubuck with water-repellent spray monthly.',
+      careInstructions: 'Wipe clean with moist sponge. Treat leather with premium shoe cream monthly.',
       countryOfOrigin: 'Designed in India / Ethically Handcrafted'
     },
     shipping: {
@@ -188,16 +188,17 @@ export const PRODUCTS: Product[] = [
       returns: '7-Day Doorstep Returns & Size Exchanges'
     },
     availableSizes: [6, 7, 8, 9, 10, 11],
-    defaultColorId: 'stealth-olive',
+    defaultColorId: 'chicago-red',
     colors: [
       {
-        id: 'stealth-olive',
-        name: 'Tactical Black & Olive',
-        hex: '#1A1D1A',
-        secondaryHex: '#3E4B3E',
+        id: 'chicago-red',
+        name: 'Chicago Red & White Edition',
+        hex: '#BA0C2F',
+        secondaryHex: '#FFFFFF',
         image: '/images/model2-hightop.jpg',
         gallery: [
-          '/images/model2-hightop.jpg'
+          '/images/model2-hightop.jpg',
+          '/images/hero-sneaker.jpg'
         ],
         inStock: true
       }
