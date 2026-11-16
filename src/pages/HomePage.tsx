@@ -19,6 +19,225 @@ import {
   Pause
 } from 'lucide-react';
 
+// Volumetric Atmospheric Smoke Simulation extracting pure smoke frames from hero-showcase.mp4
+const RealSmokeCanvas: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 390);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 644);
+
+    const handleResize = () => {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    // Initial procedural volumetric cloud fallback while video frames sample
+    const makeFallback = (r: number, g: number, b: number) => {
+      const c = document.createElement('canvas');
+      const size = 180;
+      c.width = size;
+      c.height = size;
+      const cx = c.getContext('2d');
+      if (!cx) return c;
+      const rad = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size * 0.48);
+      rad.addColorStop(0, `rgba(${r},${g},${b},0.85)`);
+      rad.addColorStop(0.35, `rgba(${r},${g},${b},0.5)`);
+      rad.addColorStop(0.7, `rgba(${r},${g},${b},0.15)`);
+      rad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      cx.fillStyle = rad;
+      cx.beginPath();
+      cx.arc(size / 2, size / 2, size * 0.48, 0, Math.PI * 2);
+      cx.fill();
+      return c;
+    };
+
+    const amberSprites: HTMLCanvasElement[] = [makeFallback(250, 180, 80)];
+    const cyanSprites: HTMLCanvasElement[] = [makeFallback(70, 215, 255)];
+    const whiteSprites: HTMLCanvasElement[] = [makeFallback(240, 248, 255)];
+
+    // Sample pure real smoke patches from hero-showcase.mp4
+    const sourceVideo = document.createElement('video');
+    sourceVideo.src = '/videos/hero-showcase.mp4';
+    sourceVideo.muted = true;
+    sourceVideo.crossOrigin = 'anonymous';
+
+    const samples: { time: number; x: number; y: number; w: number; h: number; tint: 'amber' | 'cyan' | 'white' }[] = [
+      { time: 1.0, x: 50, y: 350, w: 190, h: 190, tint: 'amber' },
+      { time: 2.5, x: 530, y: 340, w: 190, h: 190, tint: 'cyan' },
+      { time: 3.5, x: 60, y: 420, w: 180, h: 160, tint: 'amber' },
+      { time: 5.0, x: 520, y: 420, w: 180, h: 160, tint: 'cyan' },
+      { time: 7.0, x: 50, y: 380, w: 190, h: 180, tint: 'amber' },
+      { time: 10.5, x: 520, y: 360, w: 190, h: 180, tint: 'cyan' },
+      { time: 12.0, x: 70, y: 440, w: 180, h: 160, tint: 'white' },
+      { time: 13.0, x: 510, y: 440, w: 180, h: 160, tint: 'white' }
+    ];
+
+    let currentSampleIdx = 0;
+
+    sourceVideo.onloadeddata = () => {
+      seekNext();
+    };
+
+    function seekNext() {
+      if (currentSampleIdx >= samples.length) return;
+      sourceVideo.currentTime = samples[currentSampleIdx].time;
+    }
+
+    sourceVideo.onseeked = () => {
+      if (currentSampleIdx >= samples.length) return;
+      const s = samples[currentSampleIdx];
+      const c = document.createElement('canvas');
+      const size = 180;
+      c.width = size;
+      c.height = size;
+      const cx = c.getContext('2d');
+      if (cx) {
+        cx.drawImage(sourceVideo, s.x, s.y, s.w, s.h, 0, 0, size, size);
+
+        // Soft radial feathering
+        cx.globalCompositeOperation = 'destination-in';
+        const rad = cx.createRadialGradient(size / 2, size / 2, size * 0.15, size / 2, size / 2, size * 0.48);
+        rad.addColorStop(0, 'rgba(0,0,0,1)');
+        rad.addColorStop(0.65, 'rgba(0,0,0,0.8)');
+        rad.addColorStop(1, 'rgba(0,0,0,0)');
+        cx.fillStyle = rad;
+        cx.fillRect(0, 0, size, size);
+
+        if (s.tint === 'amber') amberSprites.push(c);
+        else if (s.tint === 'cyan') cyanSprites.push(c);
+        else whiteSprites.push(c);
+      }
+      currentSampleIdx++;
+      seekNext();
+    };
+
+    class RealSmokeParticle {
+      x: number = 0;
+      y: number = 0;
+      vx: number = 0;
+      vy: number = 0;
+      scale: number = 0;
+      growth: number = 0;
+      rotation: number = 0;
+      rotSpeed: number = 0;
+      life: number = 0;
+      lifeSpeed: number = 0;
+      maxOpacity: number = 0;
+      opacity: number = 0;
+      sprite: HTMLCanvasElement = whiteSprites[0];
+
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(initial = false) {
+        // Pool along the pedestal and lower turntable (y = 52% to 90%)
+        this.x = width * (0.05 + Math.random() * 0.90);
+        this.y = initial
+          ? height * (0.50 + Math.random() * 0.42)
+          : height * (0.64 + Math.random() * 0.26);
+
+        const relX = this.x / (width || 1);
+
+        // Cascade outward and tumble like liquid nitrogen dry-ice fog
+        const driftDir = relX < 0.5 ? -1 : 1;
+        this.vx = driftDir * (0.25 + Math.random() * 0.65) + (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.28) * 0.45;
+
+        this.scale = 0.75 + Math.random() * 0.95;
+        this.growth = 0.0025 + Math.random() * 0.0045;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotSpeed = (Math.random() - 0.5) * 0.01;
+
+        this.life = initial ? Math.random() * 0.9 : 0;
+        this.lifeSpeed = 0.0022 + Math.random() * 0.0028;
+        this.maxOpacity = 0.40 + Math.random() * 0.35;
+        this.opacity = 0;
+
+        // Choose sprite based on light direction: Left is Amber, Right is Cyan, Center is White
+        if (relX < 0.40 && amberSprites.length > 0) {
+          this.sprite = amberSprites[Math.floor(Math.random() * amberSprites.length)];
+        } else if (relX > 0.60 && cyanSprites.length > 0) {
+          this.sprite = cyanSprites[Math.floor(Math.random() * cyanSprites.length)];
+        } else {
+          const arr = [...whiteSprites, ...amberSprites, ...cyanSprites];
+          this.sprite = arr[Math.floor(Math.random() * arr.length)];
+        }
+      }
+
+      update() {
+        this.life += this.lifeSpeed;
+        if (this.life >= 1.0) {
+          this.reset();
+          return;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotSpeed;
+        this.scale += this.growth;
+
+        // Organic swell & fade curve
+        if (this.life < 0.22) {
+          this.opacity = Math.sin((this.life / 0.22) * (Math.PI / 2)) * this.maxOpacity;
+        } else {
+          this.opacity = Math.cos(((this.life - 0.22) / 0.78) * (Math.PI / 2)) * this.maxOpacity;
+        }
+      }
+
+      draw(c: CanvasRenderingContext2D) {
+        if (this.opacity <= 0.01) return;
+        c.save();
+        c.globalAlpha = this.opacity;
+        c.globalCompositeOperation = 'screen';
+        c.translate(this.x, this.y);
+        c.rotate(this.rotation);
+        const w = 180 * this.scale;
+        const h = 180 * this.scale;
+        c.drawImage(this.sprite, -w / 2, -h / 2, w, h);
+        c.restore();
+      }
+    }
+
+    const particles: RealSmokeParticle[] = [];
+    for (let i = 0; i < 55; i++) {
+      particles.push(new RealSmokeParticle());
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw(ctx);
+      }
+      animId = requestAnimationFrame(animate);
+    };
+
+    animId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none absolute inset-0 z-10 w-full h-full mix-blend-screen"
+    />
+  );
+};
+
 export const HomePage: React.FC = () => {
   const { navigate, navigateToProduct } = useRouter();
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -51,11 +270,11 @@ export const HomePage: React.FC = () => {
       setIsTransitioning(false);
     }
 
-    // Smoothly fade before the 14.2s outro screen and loop cleanly back to 0s (no sound)
-    if (video.currentTime >= 13.5 && !isTransitioning) {
+    // Smoothly fade before loop back to 0s (no sound)
+    if (video.currentTime >= 17.5 && !isTransitioning) {
       setIsTransitioning(true);
     }
-    if (video.currentTime >= 13.9) {
+    if (video.currentTime >= 18.0) {
       video.currentTime = 0;
       video.play().then(() => setIsPlaying(true)).catch(() => {});
       setTimeout(() => setIsTransitioning(false), 150);
@@ -181,20 +400,26 @@ export const HomePage: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
-            {/* Cinematic Volumetric Smoke Sneaker Showcase Stage */}
-            <div className="relative w-full max-w-xl sm:max-w-2xl flex items-center justify-center">
+            {/* Cinematic High-Top Sneaker Showcase Stage with Volumetric Smoke Atmosphere */}
+            <div className="relative w-full max-w-[390px] sm:max-w-[420px] flex items-center justify-center">
               {/* Atmospheric Background Halos */}
               <div className="absolute -inset-10 bg-radial from-white/10 via-cyan-400/5 to-transparent blur-3xl pointer-events-none animate-pulse-subtle" />
               <div className="absolute -bottom-8 inset-x-2 h-36 bg-gradient-to-t from-emerald-500/20 via-cyan-500/10 to-transparent blur-2xl pointer-events-none" />
 
-              {/* Video Stage Container with Aspect Ratio tuned to crop the recording scrubber */}
+              {/* Studio Pedestal Base Structure */}
+              <div className="absolute -bottom-6 inset-x-4 h-12 bg-gradient-to-b from-[#181818] via-[#0b0b0b] to-black rounded-b-3xl border-x border-b border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.95)] z-5 pointer-events-none flex items-center justify-center">
+                <div className="w-3/4 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              </div>
+
+              {/* Video Stage Container (Red Chicago AJ1 Sneaker with Real Billowing Smoke) */}
               <div
                 onClick={togglePlay}
-                className="relative z-10 w-full aspect-[772/590] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-white/10 bg-[#050807] group select-none"
+                className="relative z-10 w-full aspect-[390/644] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-white/10 bg-black group select-none"
               >
                 <video
                   ref={videoRef}
-                  src="/videos/hero-showcase.mp4"
+                  src="/videos/hero-sneaker-showcase.mp4"
+                  poster="/images/hero-sneaker.jpg"
                   autoPlay
                   muted
                   playsInline
@@ -202,13 +427,16 @@ export const HomePage: React.FC = () => {
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
                   onTimeUpdate={handleVideoTimeUpdate}
-                  className={`w-full h-full object-cover object-top transition-opacity duration-300 ${
+                  className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
                     isTransitioning ? 'opacity-0' : 'opacity-100'
                   }`}
                 />
 
+                {/* Real Volumetric Studio Smoke (Extracted from hero-showcase.mp4) */}
+                <RealSmokeCanvas />
+
                 {/* Seamless Edge Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#050807] via-transparent to-transparent z-15" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black via-black/40 to-transparent z-15" />
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.85)] rounded-3xl z-15" />
 
                 {/* Big Center Play Icon (if paused or browser blocked autoplay) */}
@@ -223,7 +451,7 @@ export const HomePage: React.FC = () => {
                   </div>
                 )}
 
-                {/* Interactive Controls (Replay - Permanently Muted, Sound Venda) */}
+                {/* Interactive Controls (Replay + Sound Venda - Permanently Muted) */}
                 <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
                   <button
                     onClick={handleReplay}
