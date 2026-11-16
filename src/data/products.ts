@@ -657,6 +657,261 @@ export const PRODUCTS: Product[] = [
         colorPurchased: 'Cloud White & Deep Navy'
       }
     ]
+  },
+  {
+    id: 'flare-aero-wave-street-mid',
+    name: 'FLARE Aero-Wave Street Mid',
+    modelCode: 'FLR-08-WAV',
+    collection: 'Casual Sneakers',
+    tagline: 'Breathable Cage Architecture with Sculpted Ocean Wave Midsole',
+    price: 3899,
+    originalPrice: 5499,
+    rating: 4.9,
+    reviewCount: 64,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 32,
+    description:
+      'A masterclass in futuristic mid-top aesthetics. Built with structural side-cage ventilation, deep ocean-blue wave inserts along the sculpted cupsole, and an industrial Fashion pull-tag collar that turns heads on every city block.',
+    story:
+      'Inspired by aquatic hydrodynamics and architectural streetwear. The Aero-Wave Mid blends breathable high-density mesh with structural support ribs, giving men a statement shoe with all-day bouncy comfort.',
+    features: [
+      'Sculpted wave-tread dual-density cupsole with ocean-blue energy ribs',
+      'Breathable lattice cage upper with micro-mesh underlay for 360° airflow',
+      'Padded mid-top ankle collar with integrated Fashion webbing tag',
+      'OrthoFoam™ dual-density memory insole for maximum footbed cushion',
+      'Reinforced abrasion-resistant synthetic toe cap and heel counter',
+      'Textured slip-resistant rubber outsole designed for wet city pavements'
+    ],
+    specifications: {
+      upperMaterial: 'Engineered Air-Mesh with Molded TPU Support Framework',
+      soleMaterial: 'Sculpted High-Abrasion Rubber Cupsole with EVA Core',
+      closureType: 'Lace-Up with Reinforced Webbing Eyelets',
+      cushioning: 'AeroWave™ Shock-Dispersal Midsole Cushion',
+      weight: '390g (Single shoe, Size UK 8)',
+      careInstructions: 'Spot clean with mild soapy water and soft brush. Air dry in shade.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'white-royal-blue',
+    colors: [
+      {
+        id: 'white-royal-blue',
+        name: 'Crisp White & Royal Blue',
+        hex: '#FFFFFF',
+        secondaryHex: '#2563EB',
+        image: '/images/model8-wave-blue.jpg',
+        gallery: [
+          '/images/model8-wave-blue.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-16',
+        author: 'Gautam Sharma',
+        rating: 5,
+        date: 'November 14, 2026',
+        title: 'Insane design details! The blue wave sole is fire',
+        comment:
+          'Looks even better in person than the photos. The cage mesh keeps my feet cool during long walks, and the mid-top collar gives great ankle support without feeling tight.',
+        verified: true,
+        helpfulCount: 21,
+        sizePurchased: 9,
+        colorPurchased: 'Crisp White & Royal Blue'
+      },
+      {
+        id: 'rev-17',
+        author: 'Abhishek Pillai',
+        rating: 5,
+        date: 'November 9, 2026',
+        title: 'Very comfortable and futuristic vibe',
+        comment:
+          'Got multiple compliments on day one. Fits true to size (UK 8) and the cushioning under the heel is top notch. Delivery took just 2 days to Kochi.',
+        verified: true,
+        helpfulCount: 11,
+        sizePurchased: 8,
+        colorPurchased: 'Crisp White & Royal Blue'
+      }
+    ]
+  },
+  {
+    id: 'flare-retro-court-low-obsidian',
+    name: 'FLARE Retro Court Low (Obsidian Edition)',
+    modelCode: 'FLR-09-OBS',
+    collection: 'Original Collection',
+    tagline: 'Iconic Low-Profile Court Silhouette in Two-Tone Obsidian Leather',
+    price: 4299,
+    originalPrice: 5999,
+    rating: 5.0,
+    reviewCount: 118,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 38,
+    description:
+      'Elegance meets court heritage. Handcrafted with butter-soft tumbled leather featuring deep obsidian navy overlays, crisp white toe box with precision perforations, and a soft powder-blue side swoosh overlay.',
+    story:
+      'A refined tribute to championship courts. The Obsidian Edition balances rich dark navy tones with cool steel-blue contrast for a sneaker that effortlessly elevates everything from tailored denim to casual weekend chinos.',
+    features: [
+      'Full-grain tumbled calfskin leather in two-tone Obsidian Navy & White',
+      'Perforated vamp toe box for optimal breathability and classic court look',
+      'Contrasting soft powder-blue side overlay and clean white flat laces',
+      'Low-profile padded collar with soft velvet-touch textile lining',
+      'Non-marking vulcanized rubber cupsole with circular pivot grip',
+      'Removable anatomical arch-support OrthoFoam™ footbed'
+    ],
+    specifications: {
+      upperMaterial: '100% Premium Full-Grain Calfskin Leather',
+      soleMaterial: 'High-Density Vulcanized Rubber Cupsole',
+      closureType: 'Lace-Up (7-Eyelet Precision System)',
+      cushioning: 'Full-Length OrthoFoam™ Memory Cushioning',
+      weight: '380g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean with damp cloth and leather balm. Avoid harsh detergents.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'obsidian-blue',
+    colors: [
+      {
+        id: 'obsidian-blue',
+        name: 'Obsidian Navy & Powder Blue',
+        hex: '#0F1E36',
+        secondaryHex: '#7C93AC',
+        image: '/images/model9-court-navy.jpg',
+        gallery: [
+          '/images/model9-court-navy.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-18',
+        author: 'Deepak Varma',
+        rating: 5,
+        date: 'November 13, 2026',
+        title: 'The cleanest navy sneakers out there. Pure class.',
+        comment:
+          'The shade of obsidian navy is rich and deep. Leather is soft right out of the box with zero stiff creases. Looks stunning with light blue denim.',
+        verified: true,
+        helpfulCount: 29,
+        sizePurchased: 10,
+        colorPurchased: 'Obsidian Navy & Powder Blue'
+      },
+      {
+        id: 'rev-19',
+        author: 'Manish Gupta',
+        rating: 5,
+        date: 'November 6, 2026',
+        title: 'Top-tier materials and perfect fit',
+        comment:
+          'I own multiple court sneakers, and FLARE rivals the best of them in build quality. Packaging was immaculate with individual dust bags.',
+        verified: true,
+        helpfulCount: 16,
+        sizePurchased: 9,
+        colorPurchased: 'Obsidian Navy & Powder Blue'
+      }
+    ]
+  },
+  {
+    id: 'flare-tactical-apex-skate',
+    name: 'FLARE Tactical Apex Skate High',
+    modelCode: 'FLR-10-TCK',
+    collection: 'High-Top Sneakers',
+    tagline: 'Reinforced Skateboard Ankle Architecture with Vibrant Safety Orange Accents',
+    price: 4899,
+    originalPrice: 6999,
+    rating: 4.9,
+    reviewCount: 92,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 28,
+    description:
+      'Engineered for maximum street aggression and impact resilience. The Tactical Apex Skate High blends grey suede mudguards, black full-grain leather, industrial lateral webbed straps, and safety orange eyelets and pull-tabs on a notched skate cupsole.',
+    story:
+      'Conceived at the intersection of urban tactical gear and skate culture. Reinforced at every critical stress point with dual-stitch suede and ballistic webbing, built to withstand hardcore city exploration.',
+    features: [
+      'Heavy-duty suede mudguard and full-grain leather panel construction',
+      'Tactical webbed lateral strap with FASHION SPORT skateboard branding',
+      'High-visibility safety orange eyelet hardware and heel pull loop',
+      'Padded high-top collar providing maximum ankle stability and protection',
+      'Notched perimeter-stitched skate cupsole with deep herringbone grip',
+      'Shock-absorbing EVA drop-in midsole core for high-impact landings'
+    ],
+    specifications: {
+      upperMaterial: 'Heavy-Duty Suede, Full-Grain Leather & Ballistic Nylon Webbing',
+      soleMaterial: 'Reinforced Vulcanized Rubber Skate Cupsole',
+      closureType: 'Speed-Lace with Contrast Two-Tone Heavy Cords',
+      cushioning: 'ImpactShield™ Skate-Grade Shock Insole',
+      weight: '470g (Single shoe, Size UK 8)',
+      careInstructions: 'Brush suede with dry bristle brush. Wipe leather with damp sponge.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'monochrome-orange',
+    colors: [
+      {
+        id: 'monochrome-orange',
+        name: 'Concrete Grey, Black & Safety Orange',
+        hex: '#4A4A4A',
+        secondaryHex: '#FF5722',
+        image: '/images/model10-tactical-orange.jpg',
+        gallery: [
+          '/images/model10-tactical-orange.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-20',
+        author: 'Tariq Al-Mansoor',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'Built like a tank but surprisingly comfortable',
+        comment:
+          'The orange accents contrast amazingly with the black and grey panels. Ankle support is solid and the suede feels very durable. Perfect for pairing with utility cargo pants.',
+        verified: true,
+        helpfulCount: 24,
+        sizePurchased: 9,
+        colorPurchased: 'Concrete Grey, Black & Safety Orange'
+      },
+      {
+        id: 'rev-21',
+        author: 'Kunal Joshi',
+        rating: 5,
+        date: 'November 10, 2026',
+        title: 'Heavyweight street swagger',
+        comment:
+          'One of the coolest high-tops in my collection. Solid construction, cushioned sole, and the two-tone laces add a great touch.',
+        verified: true,
+        helpfulCount: 13,
+        sizePurchased: 10,
+        colorPurchased: 'Concrete Grey, Black & Safety Orange'
+      }
+    ]
   }
 ];
 
@@ -676,6 +931,7 @@ export const COLOR_FILTERS = [
   { name: 'Black', hex: '#111111' },
   { name: 'Red', hex: '#BA0C2F' },
   { name: 'Blue', hex: '#0A2540' },
+  { name: 'Orange', hex: '#FF5722' },
   { name: 'Grey', hex: '#8C9298' }
 ];
 
