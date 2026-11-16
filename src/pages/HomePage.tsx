@@ -304,8 +304,6 @@ export const HomePage: React.FC = () => {
   };
 
   const originalSneaker = PRODUCTS[0];
-  const bestSellers = PRODUCTS.filter((p) => p.isBestSeller);
-  const newArrivals = PRODUCTS.filter((p) => p.isNewArrival || p.isFeatured);
 
   const collections = [
     {
@@ -550,18 +548,18 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. BEST SELLERS */}
+      {/* 3. OUR COLLECTION (Single unified products showcase) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <div className="text-xs font-extrabold tracking-widest text-forest uppercase">
-              TOP PERFORMERS
+              SIGNATURE MEN'S FOOTWEAR
             </div>
             <h2 className="text-2xl sm:text-3xl font-black text-brand-black tracking-tight uppercase">
-              BEST SELLERS
+              OUR COLLECTION
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              The men's sneakers our community can't stop talking about.
+              Explore our complete range of premium handcrafted men's sneakers.
             </p>
           </div>
           <button
@@ -574,7 +572,7 @@ export const HomePage: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {bestSellers.map((product) => (
+          {PRODUCTS.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -630,44 +628,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. NEW ARRIVALS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <div>
-            <div className="text-xs font-extrabold tracking-widest text-forest uppercase">
-              FRESH SILHOUETTES
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-brand-black tracking-tight uppercase">
-              NEW ARRIVALS
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              Engineered with modern textures, dynamic soles, and pristine details.
-            </p>
-          </div>
-          <button
-            onClick={() => navigate('/shop')}
-            className="inline-flex items-center gap-2 text-xs font-bold text-forest hover:text-forest-light uppercase tracking-wider group"
-          >
-            <span>VIEW ALL RELEASES</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {newArrivals.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onQuickView={(p, col) => {
-                setQuickViewProduct(p);
-                setQuickViewColor(col);
-              }}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* 6. WHY CHOOSE FLARE */}
+      {/* 5. WHY CHOOSE FLARE */}
       <section className="bg-gray-50 py-16 sm:py-24 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-14">
