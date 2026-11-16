@@ -19,6 +19,162 @@ import {
   Pause
 } from 'lucide-react';
 
+// Volumetric Atmospheric Smoke Simulation Canvas
+const SmokeCanvas: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 400);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 640);
+
+    const handleResize = () => {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    };
+    window.addEventListener('resize', handleResize);
+
+    class SmokeParticle {
+      x: number = 0;
+      y: number = 0;
+      radius: number = 0;
+      growthRate: number = 0;
+      vx: number = 0;
+      vy: number = 0;
+      curl: number = 0;
+      opacity: number = 0;
+      maxOpacity: number = 0;
+      life: number = 0;
+      lifeSpeed: number = 0;
+      r: number = 255;
+      g: number = 255;
+      b: number = 255;
+
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(initial = false) {
+        // Spawn around the lower mid/bottom area (pedestal & base of shoe)
+        this.x = width * (0.12 + Math.random() * 0.76);
+        this.y = initial
+          ? height * (0.40 + Math.random() * 0.50)
+          : height * (0.68 + Math.random() * 0.22);
+        this.radius = 45 + Math.random() * 75;
+        this.growthRate = 0.35 + Math.random() * 0.6;
+
+        // Gentle drift upward with curling swirl
+        this.vx = (Math.random() - 0.5) * 0.65;
+        this.vy = -(0.45 + Math.random() * 0.85);
+        this.curl = (Math.random() - 0.5) * 0.025;
+
+        this.opacity = 0;
+        this.maxOpacity = 0.18 + Math.random() * 0.22;
+        this.life = initial ? Math.random() * 0.8 : 0;
+        this.lifeSpeed = 0.0025 + Math.random() * 0.0035;
+
+        // Atmospheric studio color lighting matching the video:
+        // Left side gets warm amber glow (like the left softbox)
+        // Right side gets cool cyan glow (like the right softbox)
+        // Center gets dense white cloud
+        const relX = this.x / (width || 1);
+        if (relX < 0.35) {
+          this.r = 245;
+          this.g = 170 + Math.floor(Math.random() * 45);
+          this.b = 75;
+        } else if (relX > 0.65) {
+          this.r = 100 + Math.floor(Math.random() * 40);
+          this.g = 215;
+          this.b = 250;
+        } else {
+          this.r = 242;
+          this.g = 246;
+          this.b = 255;
+        }
+      }
+
+      update() {
+        this.life += this.lifeSpeed;
+        if (this.life >= 1.0) {
+          this.reset();
+          return;
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx += this.curl;
+        this.radius += this.growthRate;
+
+        // Smooth cubic ease in, smooth fade out
+        if (this.life < 0.25) {
+          this.opacity = (this.life / 0.25) * this.maxOpacity;
+        } else {
+          this.opacity = (1 - (this.life - 0.25) / 0.75) * this.maxOpacity;
+        }
+      }
+
+      draw(c: CanvasRenderingContext2D) {
+        if (this.opacity <= 0.005) return;
+        c.save();
+        c.globalCompositeOperation = 'screen';
+
+        const grad = c.createRadialGradient(
+          this.x,
+          this.y,
+          0,
+          this.x,
+          this.y,
+          this.radius
+        );
+        grad.addColorStop(0, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`);
+        grad.addColorStop(0.35, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity * 0.7})`);
+        grad.addColorStop(0.7, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity * 0.25})`);
+        grad.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+
+        c.fillStyle = grad;
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        c.fill();
+        c.restore();
+      }
+    }
+
+    const particles: SmokeParticle[] = [];
+    for (let i = 0; i < 55; i++) {
+      particles.push(new SmokeParticle());
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw(ctx);
+      }
+      animId = requestAnimationFrame(animate);
+    };
+
+    animId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none absolute inset-0 z-10 w-full h-full mix-blend-screen"
+    />
+  );
+};
+
 export const HomePage: React.FC = () => {
   const { navigate, navigateToProduct } = useRouter();
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -171,23 +327,26 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="space-y-20 sm:space-y-28">
-      {/* 1. CINEMATIC HERO SECTION (Pure Studio 360° Sneaker Showcase - Clean, No Smoke, Muted) */}
+      {/* 1. CINEMATIC HERO SECTION (Volumetric Smoke Studio 360° Sneaker Showcase) */}
       <section className="relative bg-gradient-to-b from-[#040B09] via-[#002820] to-forest overflow-hidden text-white pt-6 sm:pt-10 pb-14 sm:pb-20">
-        {/* Subtle Ambient Brand Atmosphere */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-emerald-400/10 rounded-full blur-[140px] pointer-events-none" />
+        {/* Studio Softbox Lighting - Left Amber Glow & Right Cyan Glow matching the studio smoke video */}
+        <div className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-amber-500/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-1/3 -right-20 w-[420px] h-[420px] bg-cyan-400/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-emerald-400/10 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-0 right-10 w-[420px] h-[420px] bg-forest-dark/80 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center justify-center text-center">
-            {/* Cinematic High-Top Sneaker Showcase Stage */}
-            <div className="relative w-full max-w-[380px] sm:max-w-[420px] flex items-center justify-center">
-              {/* Ambient Floor Reflection Halo */}
-              <div className="absolute -inset-6 bg-radial from-red-600/10 via-forest-light/10 to-transparent blur-3xl pointer-events-none" />
+            {/* Cinematic High-Top Sneaker Showcase Stage with Volumetric Smoke Atmosphere */}
+            <div className="relative w-full max-w-[390px] sm:max-w-[420px] flex items-center justify-center">
+              {/* Atmospheric Background Smoke Halos */}
+              <div className="absolute -inset-10 bg-radial from-white/10 via-cyan-400/10 to-transparent blur-3xl pointer-events-none animate-pulse-subtle" />
+              <div className="absolute -bottom-8 inset-x-2 h-36 bg-gradient-to-t from-emerald-500/20 via-cyan-500/10 to-transparent blur-2xl pointer-events-none" />
 
               {/* Video Stage Container */}
               <div
                 onClick={togglePlay}
-                className="relative z-10 w-full aspect-[390/644] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.92)] border border-white/10 bg-black group select-none"
+                className="relative z-10 w-full aspect-[390/644] rounded-3xl overflow-hidden cursor-pointer shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-white/10 bg-black group select-none"
               >
                 <video
                   ref={videoRef}
@@ -205,9 +364,12 @@ export const HomePage: React.FC = () => {
                   }`}
                 />
 
+                {/* Live Volumetric Smoke Clouds Simulation Layer */}
+                <SmokeCanvas />
+
                 {/* Seamless Edge Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_45px_rgba(0,0,0,0.85)] rounded-3xl pointer-events-none" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black via-black/40 to-transparent z-15" />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] rounded-3xl pointer-events-none z-15" />
 
                 {/* Big Center Play Icon (if paused or browser blocked autoplay) */}
                 {!isPlaying && (
