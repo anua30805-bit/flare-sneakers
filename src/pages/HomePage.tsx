@@ -312,27 +312,6 @@ export const HomePage: React.FC = () => {
       image: '/images/model1-white-green.jpg',
       category: 'Original Collection',
       price: 'From ₹3,999'
-    },
-    {
-      title: 'High-Top Collection',
-      tagline: 'Architectural Streetwear & Nubuck Lug',
-      image: '/images/model2-hightop.jpg',
-      category: 'High-Top Sneakers',
-      price: 'From ₹4,999'
-    },
-    {
-      title: 'Running Collection',
-      tagline: 'Nitrogen Rebound Cushioning & Air Mesh',
-      image: '/images/model3-runner.jpg',
-      category: 'Running Sneakers',
-      price: 'From ₹3,499'
-    },
-    {
-      title: 'Casual Collection',
-      tagline: 'Italian Seamless Nappa Calfskin',
-      image: '/images/model4-casual.jpg',
-      category: 'Casual Sneakers',
-      price: 'From ₹4,499'
     }
   ];
 
@@ -500,21 +479,21 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 2. FEATURED COLLECTIONS: "FIND YOUR PERFECT PAIR" */}
+      {/* 2. FEATURED COLLECTION SPOTLIGHT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12 sm:mb-16">
+        <div className="text-center max-w-2xl mx-auto space-y-3 mb-10">
           <div className="text-xs font-extrabold tracking-widest text-forest uppercase">
-            MEN'S CURATED SILHOUETTES
+            MEN'S CURATED SILHOUETTE
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-brand-black tracking-tight uppercase">
             FIND YOUR PERFECT PAIR.
           </h2>
           <p className="text-sm text-gray-500">
-            Four distinctive men's designs engineered for terrace weekends, street swagger, morning runs, and minimalist luxury.
+            Distinctive men's court heritage engineered for terrace weekends, street swagger, and everyday style.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-md mx-auto">
           {collections.map((col, idx) => (
             <div
               key={col.title}
@@ -523,23 +502,23 @@ export const HomePage: React.FC = () => {
             >
               <div className="p-6 relative z-10">
                 <span className="text-[10px] font-mono text-gray-400 font-bold">0{idx + 1}</span>
-                <h3 className="font-extrabold text-lg text-brand-black group-hover:text-forest transition-colors mt-1">
+                <h3 className="font-extrabold text-xl text-brand-black group-hover:text-forest transition-colors mt-1">
                   {col.title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-1 line-clamp-1">{col.tagline}</p>
-                <div className="mt-2 text-xs font-black text-forest">{col.price}</div>
+                <p className="text-xs text-gray-500 mt-1">{col.tagline}</p>
+                <div className="mt-2 text-sm font-black text-forest">{col.price}</div>
               </div>
 
               {/* Sneaker Image */}
-              <div className="aspect-[4/3] p-4 flex items-center justify-center overflow-hidden">
+              <div className="aspect-[4/3] p-6 flex items-center justify-center overflow-hidden">
                 <img
                   src={col.image}
                   alt={col.title}
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
-              <div className="p-4 pt-0 flex items-center justify-between text-xs font-bold text-forest group-hover:translate-x-1 transition-transform">
+              <div className="p-6 pt-0 flex items-center justify-between text-xs font-bold text-forest group-hover:translate-x-1 transition-transform">
                 <span>EXPLORE</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
