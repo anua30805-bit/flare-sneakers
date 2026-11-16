@@ -401,6 +401,262 @@ export const PRODUCTS: Product[] = [
         colorPurchased: 'Chalk Bone & Cream'
       }
     ]
+  },
+  {
+    id: 'flare-blade-runner-crimson',
+    name: 'FLARE Cyber-Blade Kinetic Runner',
+    modelCode: 'FLR-05-BLD',
+    collection: 'Running Sneakers',
+    tagline: 'Futuristic Hollow-Blade Energy-Return Runner in All-Crimson Red',
+    price: 3799,
+    originalPrice: 5499,
+    rating: 4.9,
+    reviewCount: 86,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 34,
+    description:
+      'Defy gravity with the aggressive aerodynamic silhouette of the Cyber-Blade Kinetic Runner. Engineered with an architectural hollow-blade polymer sole that absorbs impact and propels each step forward, wrapped in high-tensile breathable crimson knit mesh.',
+    story:
+      'Designed for forward velocity. The Cyber-Blade runner draws inspiration from aerospace aerodynamics and futuristic footwear engineering. Its signature hollow blade chassis delivers high-rebound energy with zero unnecessary weight.',
+    features: [
+      'Geometric hollow blade suspension sole engineered for forward propulsion',
+      'Breathable 3D jacquard knit upper with dynamic lockdown lacing',
+      'Reinforced molded TPU heel cage with industrial TREND pull-loop',
+      'Ergonomic high-density arch support footbed for all-day comfort',
+      'Ultra-grippy multi-surface tread with segmented flex grooves',
+      'Moisture-wicking interior lining keeping feet dry during intense workouts'
+    ],
+    specifications: {
+      upperMaterial: 'Breathable Engineered Jacquard Knit & Molded TPU Cage',
+      soleMaterial: 'High-Tension Polymer Blade Spring Sole & Carbon Rubber Pods',
+      closureType: 'Dynamic Speed-Lace with Integrated Tongue',
+      cushioning: 'BladeSpring™ Mechanical Energy-Return Core',
+      weight: '310g (Single shoe, Size UK 8)',
+      careInstructions: 'Spot clean with cool water and soft brush. Air dry away from direct heat.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'crimson-red',
+    colors: [
+      {
+        id: 'crimson-red',
+        name: 'Vibrant Crimson Red',
+        hex: '#D90429',
+        secondaryHex: '#1A1A1A',
+        image: '/images/model5-blade-red.jpg',
+        gallery: [
+          '/images/model5-blade-red.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-10',
+        author: 'Akhil Raj',
+        rating: 5,
+        date: 'November 12, 2026',
+        title: 'Futuristic look with crazy bounce and arch support',
+        comment:
+          'The blade sole actually gives noticeable spring when walking and running. The crimson red color is super vibrant and looks sick with black joggers. Truly unique design.',
+        verified: true,
+        helpfulCount: 18,
+        sizePurchased: 8,
+        colorPurchased: 'Vibrant Crimson Red'
+      },
+      {
+        id: 'rev-11',
+        author: 'Nikhil Varghese',
+        rating: 5,
+        date: 'November 8, 2026',
+        title: 'Eye-catching red sneakers, very lightweight',
+        comment:
+          'Got so many compliments at the gym already. The knit feels snug and supportive around the ankle. Solid grip on treadmill and pavement.',
+        verified: true,
+        helpfulCount: 9,
+        sizePurchased: 10,
+        colorPurchased: 'Vibrant Crimson Red'
+      }
+    ]
+  },
+  {
+    id: 'flare-retro-court-dunk-panda',
+    name: 'FLARE Retro Court Dunk (Panda Edition)',
+    modelCode: 'FLR-06-DNK',
+    collection: 'Original Collection',
+    tagline: 'Timeless Monochrome Black & White Low-Top Court Classic',
+    price: 4199,
+    originalPrice: 5999,
+    rating: 5.0,
+    reviewCount: 142,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 40,
+    description:
+      'The most versatile silhouette in men\'s streetwear. Crafted in pristine two-tone full-grain leather with iconic Panda black-and-white blocking, perforated toe box, and padded low-cut collar for unmatched street style.',
+    story:
+      'Born on the basketball courts of the 1980s and adopted by modern street culture. The Retro Court Dunk in Panda Monochrome is engineered to match effortlessly with literally any wardrobe—from relaxed denim to tailored trousers.',
+    features: [
+      'Classic dual-tone full-grain tumbled leather in Panda Monochrome',
+      'Perforated toe box for maximum ventilation and vintage court heritage',
+      'High-abrasion vulcanized rubber cupsole with pivot-circle traction',
+      'Padded low-cut collar engineered for freedom of movement',
+      'Woven STYLE EST. 2024 vintage tongue label and tonal flat laces',
+      'Reinforced double-needle contrast stitching throughout',
+      'All-day anatomical memory foam arch support insole'
+    ],
+    specifications: {
+      upperMaterial: '100% Premium Full-Grain Calfskin Leather',
+      soleMaterial: 'High-Density Vulcanized Rubber Cupsole',
+      closureType: 'Lace-Up (Precision 6-Eyelet System)',
+      cushioning: 'OrthoFoam™ Anatomical Arch Support Insole',
+      weight: '395g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean with damp cloth and leather conditioner. Avoid harsh chemicals.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'panda-black-white',
+    colors: [
+      {
+        id: 'panda-black-white',
+        name: 'Monochrome Panda (Black & White)',
+        hex: '#111111',
+        secondaryHex: '#FFFFFF',
+        image: '/images/model6-dunk-panda.jpg',
+        gallery: [
+          '/images/model6-dunk-panda.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-12',
+        author: 'Faizal Khan',
+        rating: 5,
+        date: 'November 10, 2026',
+        title: 'The ultimate daily driver sneaker. Zero flaws.',
+        comment:
+          'Panda colorway is always a winner. The leather quality here is substantially thicker and softer than ordinary retail drops. Toe box is comfortable and doesn\'t crease painfully. 10/10.',
+        verified: true,
+        helpfulCount: 26,
+        sizePurchased: 9,
+        colorPurchased: 'Monochrome Panda (Black & White)'
+      },
+      {
+        id: 'rev-13',
+        author: 'Siddharth Iyer',
+        rating: 5,
+        date: 'November 5, 2026',
+        title: 'Goes with literally everything in my closet',
+        comment:
+          'Clean silhouette, premium finish, and super cushioned underfoot. Arrived in a very neat magnetic shoe box with free extra laces. Super happy with FLARE.',
+        verified: true,
+        helpfulCount: 14,
+        sizePurchased: 10,
+        colorPurchased: 'Monochrome Panda (Black & White)'
+      }
+    ]
+  },
+  {
+    id: 'flare-stratus-chunky-runner',
+    name: 'FLARE Stratus Chunky Street Runner',
+    modelCode: 'FLR-07-STR',
+    collection: 'Casual Sneakers',
+    tagline: 'Architectural Sculpted Cloud Sole with Premium Multi-Layer Mesh',
+    price: 4699,
+    originalPrice: 6499,
+    rating: 4.8,
+    reviewCount: 78,
+    isBestSeller: false,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 25,
+    description:
+      'Bold, elevated street swagger. The Stratus Chunky Runner features a dramatic wave-sculpted platform sole combined with multi-layered breathable air mesh, deep navy suede accents, and premium leather overlays.',
+    story:
+      'For men who embrace bold proportions. Inspired by modern architectural topography and high-fashion bulky runner trends, the Stratus delivers statement-making presence with featherweight cloud cushioning.',
+    features: [
+      'Sculpted lightweight wave platform sole with 45mm heel elevation',
+      'Multi-layer breathable sandwich mesh with genuine suede paneling',
+      'Deep Navy and Cool Slate Grey accents over Crisp Cloud White',
+      'Reflective FASHION lateral badge and dual pull-tabs at tongue and heel',
+      'Shock-absorbing EVA core with anti-torsion TPU midfoot shank',
+      'Deep lugged rubber outsole for all-weather grip on wet pavements'
+    ],
+    specifications: {
+      upperMaterial: 'Layered Breathable Air-Mesh, Microfiber Leather & Suede',
+      soleMaterial: 'Ultra-Light Sculpted EVA Platform with Rubber Lug Outsole',
+      closureType: 'Athletic Ghillie Cord Lacing System',
+      cushioning: 'CloudStratus™ High-Rebound Foam Midsole',
+      weight: '410g (Single shoe, Size UK 8)',
+      careInstructions: 'Spot clean with mild detergent solution. Do not submerge in water.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'cloud-navy',
+    colors: [
+      {
+        id: 'cloud-navy',
+        name: 'Cloud White & Deep Navy',
+        hex: '#F0F4F8',
+        secondaryHex: '#0B1B3D',
+        image: '/images/model7-chunky-navy.jpg',
+        gallery: [
+          '/images/model7-chunky-navy.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-14',
+        author: 'Vivek Chawla',
+        rating: 5,
+        date: 'November 11, 2026',
+        title: 'Chunky silhouette done right without feeling heavy',
+        comment:
+          'The sculpted sole looks insane in person. Provides great height and shock absorption. The navy blue accents pop nicely against the white mesh. Super stylish.',
+        verified: true,
+        helpfulCount: 15,
+        sizePurchased: 8,
+        colorPurchased: 'Cloud White & Deep Navy'
+      },
+      {
+        id: 'rev-15',
+        author: 'Rahul Menon',
+        rating: 4,
+        date: 'November 7, 2026',
+        title: 'Great streetwear sneaker, lots of comfort',
+        comment:
+          'High quality materials and very solid build. Looks awesome with baggy trousers or sweatpants. Definitely recommend getting your usual size.',
+        verified: true,
+        helpfulCount: 7,
+        sizePurchased: 11,
+        colorPurchased: 'Cloud White & Deep Navy'
+      }
+    ]
   }
 ];
 
@@ -418,6 +674,7 @@ export const COLOR_FILTERS = [
   { name: 'White', hex: '#FFFFFF', border: true },
   { name: 'Green', hex: '#003D32' },
   { name: 'Black', hex: '#111111' },
+  { name: 'Red', hex: '#BA0C2F' },
   { name: 'Blue', hex: '#0A2540' },
   { name: 'Grey', hex: '#8C9298' }
 ];
