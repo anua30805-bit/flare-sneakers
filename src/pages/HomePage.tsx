@@ -19,7 +19,7 @@ import {
   Pause
 } from 'lucide-react';
 
-// Volumetric Atmospheric Smoke Simulation Canvas
+// Cinematic Volumetric Atmospheric Smoke Simulation Canvas
 const SmokeCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -30,8 +30,8 @@ const SmokeCanvas: React.FC = () => {
     if (!ctx) return;
 
     let animId: number;
-    let width = (canvas.width = canvas.parentElement?.clientWidth || 400);
-    let height = (canvas.height = canvas.parentElement?.clientHeight || 640);
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 420);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 680);
 
     const handleResize = () => {
       if (!canvas || !canvas.parentElement) return;
@@ -40,62 +40,120 @@ const SmokeCanvas: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    class SmokeParticle {
+    // Procedural organic smoke puff sprite generator with multi-octave turbulence
+    const generateSmokeSprite = (tintR: number, tintG: number, tintB: number, turbulenceSeed: number) => {
+      const size = 180;
+      const c = document.createElement('canvas');
+      c.width = size;
+      c.height = size;
+      const cx = c.getContext('2d');
+      if (!cx) return c;
+      const center = size / 2;
+
+      // Soft volumetric base cloud
+      const grad = cx.createRadialGradient(center, center, 0, center, center, center);
+      grad.addColorStop(0, `rgba(${tintR}, ${tintG}, ${tintB}, 0.95)`);
+      grad.addColorStop(0.35, `rgba(${tintR}, ${tintG}, ${tintB}, 0.6)`);
+      grad.addColorStop(0.68, `rgba(${tintR}, ${tintG}, ${tintB}, 0.18)`);
+      grad.addColorStop(1, `rgba(${tintR}, ${tintG}, ${tintB}, 0)`);
+
+      cx.fillStyle = grad;
+      cx.beginPath();
+      cx.arc(center, center, center, 0, Math.PI * 2);
+      cx.fill();
+
+      // Add turbulent volumetric lobes & cloud eddies
+      for (let i = 0; i < 7; i++) {
+        const ang = (i / 7) * Math.PI * 2 + turbulenceSeed;
+        const rad = center * (0.22 + (i % 3) * 0.14);
+        const bx = center + Math.cos(ang) * rad;
+        const by = center + Math.sin(ang) * rad;
+        const bSize = center * 0.48;
+
+        const subGrad = cx.createRadialGradient(bx, by, 0, bx, by, bSize);
+        subGrad.addColorStop(0, `rgba(${tintR}, ${tintG}, ${tintB}, 0.5)`);
+        subGrad.addColorStop(0.65, `rgba(${tintR}, ${tintG}, ${tintB}, 0.12)`);
+        subGrad.addColorStop(1, `rgba(${tintR}, ${tintG}, ${tintB}, 0)`);
+
+        cx.fillStyle = subGrad;
+        cx.beginPath();
+        cx.arc(bx, by, bSize, 0, Math.PI * 2);
+        cx.fill();
+      }
+      return c;
+    };
+
+    // Cached high-res multi-lighting sprite banks
+    const sprites = {
+      amber: [
+        generateSmokeSprite(255, 185, 95, 0.4),
+        generateSmokeSprite(250, 160, 60, 1.8),
+        generateSmokeSprite(255, 205, 120, 3.2)
+      ],
+      cyan: [
+        generateSmokeSprite(90, 220, 255, 0.9),
+        generateSmokeSprite(34, 211, 238, 2.3),
+        generateSmokeSprite(140, 235, 255, 3.7)
+      ],
+      white: [
+        generateSmokeSprite(245, 248, 255, 0.2),
+        generateSmokeSprite(235, 240, 250, 1.5),
+        generateSmokeSprite(255, 255, 255, 2.8)
+      ]
+    };
+
+    class SmokePuff {
       x: number = 0;
       y: number = 0;
-      radius: number = 0;
-      growthRate: number = 0;
+      scale: number = 0;
+      growth: number = 0;
+      rotation: number = 0;
+      rotSpeed: number = 0;
       vx: number = 0;
       vy: number = 0;
-      curl: number = 0;
-      opacity: number = 0;
-      maxOpacity: number = 0;
       life: number = 0;
       lifeSpeed: number = 0;
-      r: number = 255;
-      g: number = 255;
-      b: number = 255;
+      maxOpacity: number = 0;
+      opacity: number = 0;
+      sprite: HTMLCanvasElement = sprites.white[0];
 
       constructor() {
         this.reset(true);
       }
 
       reset(initial = false) {
-        // Spawn around the lower mid/bottom area (pedestal & base of shoe)
-        this.x = width * (0.12 + Math.random() * 0.76);
+        // Pedestal spawn distribution: dense concentration at the base and turntable
+        this.x = width * (0.05 + Math.random() * 0.90);
         this.y = initial
-          ? height * (0.40 + Math.random() * 0.50)
+          ? height * (0.35 + Math.random() * 0.55)
           : height * (0.68 + Math.random() * 0.22);
-        this.radius = 45 + Math.random() * 75;
-        this.growthRate = 0.35 + Math.random() * 0.6;
 
-        // Gentle drift upward with curling swirl
-        this.vx = (Math.random() - 0.5) * 0.65;
-        this.vy = -(0.45 + Math.random() * 0.85);
-        this.curl = (Math.random() - 0.5) * 0.025;
+        this.scale = 0.55 + Math.random() * 0.75;
+        this.growth = 0.0035 + Math.random() * 0.0055;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotSpeed = (Math.random() - 0.5) * 0.015;
 
-        this.opacity = 0;
-        this.maxOpacity = 0.18 + Math.random() * 0.22;
-        this.life = initial ? Math.random() * 0.8 : 0;
-        this.lifeSpeed = 0.0025 + Math.random() * 0.0035;
-
-        // Atmospheric studio color lighting matching the video:
-        // Left side gets warm amber glow (like the left softbox)
-        // Right side gets cool cyan glow (like the right softbox)
-        // Center gets dense white cloud
+        // Velocity: drift outward from sneaker silhouette & billow upward with turbulent curl
         const relX = this.x / (width || 1);
-        if (relX < 0.35) {
-          this.r = 245;
-          this.g = 170 + Math.floor(Math.random() * 45);
-          this.b = 75;
-        } else if (relX > 0.65) {
-          this.r = 100 + Math.floor(Math.random() * 40);
-          this.g = 215;
-          this.b = 250;
+        const driftDir = relX < 0.5 ? -1 : 1;
+        this.vx = driftDir * (0.2 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.4;
+        this.vy = -(0.35 + Math.random() * 0.75);
+
+        this.life = initial ? Math.random() * 0.85 : 0;
+        this.lifeSpeed = 0.0018 + Math.random() * 0.0024;
+        this.maxOpacity = 0.22 + Math.random() * 0.28;
+        this.opacity = 0;
+
+        // Choose illuminated sprite based on horizontal studio light zones
+        if (relX < 0.38) {
+          const arr = sprites.amber;
+          this.sprite = arr[Math.floor(Math.random() * arr.length)];
+        } else if (relX > 0.62) {
+          const arr = sprites.cyan;
+          this.sprite = arr[Math.floor(Math.random() * arr.length)];
         } else {
-          this.r = 242;
-          this.g = 246;
-          this.b = 255;
+          const arr = sprites.white;
+          this.sprite = arr[Math.floor(Math.random() * arr.length)];
         }
       }
 
@@ -108,53 +166,41 @@ const SmokeCanvas: React.FC = () => {
 
         this.x += this.vx;
         this.y += this.vy;
-        this.vx += this.curl;
-        this.radius += this.growthRate;
+        this.rotation += this.rotSpeed;
+        this.scale += this.growth;
 
-        // Smooth cubic ease in, smooth fade out
+        // Natural cinematic smoke swell curve
         if (this.life < 0.25) {
-          this.opacity = (this.life / 0.25) * this.maxOpacity;
+          this.opacity = Math.sin((this.life / 0.25) * (Math.PI / 2)) * this.maxOpacity;
         } else {
-          this.opacity = (1 - (this.life - 0.25) / 0.75) * this.maxOpacity;
+          this.opacity = Math.cos(((this.life - 0.25) / 0.75) * (Math.PI / 2)) * this.maxOpacity;
         }
       }
 
       draw(c: CanvasRenderingContext2D) {
         if (this.opacity <= 0.005) return;
         c.save();
+        c.globalAlpha = this.opacity;
         c.globalCompositeOperation = 'screen';
-
-        const grad = c.createRadialGradient(
-          this.x,
-          this.y,
-          0,
-          this.x,
-          this.y,
-          this.radius
-        );
-        grad.addColorStop(0, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity})`);
-        grad.addColorStop(0.35, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity * 0.7})`);
-        grad.addColorStop(0.7, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.opacity * 0.25})`);
-        grad.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
-
-        c.fillStyle = grad;
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        c.fill();
+        c.translate(this.x, this.y);
+        c.rotate(this.rotation);
+        const w = 180 * this.scale;
+        const h = 180 * this.scale;
+        c.drawImage(this.sprite, -w / 2, -h / 2, w, h);
         c.restore();
       }
     }
 
-    const particles: SmokeParticle[] = [];
-    for (let i = 0; i < 55; i++) {
-      particles.push(new SmokeParticle());
+    const puffs: SmokePuff[] = [];
+    for (let i = 0; i < 70; i++) {
+      puffs.push(new SmokePuff());
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw(ctx);
+      for (let i = 0; i < puffs.length; i++) {
+        puffs[i].update();
+        puffs[i].draw(ctx);
       }
       animId = requestAnimationFrame(animate);
     };
@@ -330,8 +376,8 @@ export const HomePage: React.FC = () => {
       {/* 1. CINEMATIC HERO SECTION (Volumetric Smoke Studio 360° Sneaker Showcase) */}
       <section className="relative bg-gradient-to-b from-[#040B09] via-[#002820] to-forest overflow-hidden text-white pt-6 sm:pt-10 pb-14 sm:pb-20">
         {/* Studio Softbox Lighting - Left Amber Glow & Right Cyan Glow matching the studio smoke video */}
-        <div className="absolute top-1/4 -left-20 w-[420px] h-[420px] bg-amber-500/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
-        <div className="absolute top-1/3 -right-20 w-[420px] h-[420px] bg-cyan-400/20 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-1/4 -left-20 w-[460px] h-[460px] bg-amber-500/25 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
+        <div className="absolute top-1/3 -right-20 w-[460px] h-[460px] bg-cyan-400/25 rounded-full blur-[110px] pointer-events-none animate-pulse-subtle" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-emerald-400/10 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-0 right-10 w-[420px] h-[420px] bg-forest-dark/80 rounded-full blur-3xl pointer-events-none" />
 
@@ -339,9 +385,22 @@ export const HomePage: React.FC = () => {
           <div className="flex flex-col items-center justify-center text-center">
             {/* Cinematic High-Top Sneaker Showcase Stage with Volumetric Smoke Atmosphere */}
             <div className="relative w-full max-w-[390px] sm:max-w-[420px] flex items-center justify-center">
+              {/* Twin Physical Studio Softboxes (Like in the Studio Smoke Video) */}
+              <div className="hidden sm:block absolute top-[10%] -left-14 w-20 h-28 rounded-2xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 p-1 shadow-[0_0_60px_rgba(245,158,11,0.9),0_0_120px_rgba(245,158,11,0.5)] rotate-[22deg] z-20 pointer-events-none transition-transform hover:scale-105">
+                <div className="w-full h-full rounded-xl bg-gradient-to-br from-amber-100 to-amber-300 opacity-95 shadow-inner" />
+              </div>
+              <div className="hidden sm:block absolute top-[10%] -right-14 w-20 h-28 rounded-2xl bg-gradient-to-bl from-cyan-200 via-cyan-400 to-cyan-600 p-1 shadow-[0_0_60px_rgba(6,182,212,0.9),0_0_120px_rgba(6,182,212,0.5)] -rotate-[22deg] z-20 pointer-events-none transition-transform hover:scale-105">
+                <div className="w-full h-full rounded-xl bg-gradient-to-bl from-white to-cyan-200 opacity-95 shadow-inner" />
+              </div>
+
               {/* Atmospheric Background Smoke Halos */}
-              <div className="absolute -inset-10 bg-radial from-white/10 via-cyan-400/10 to-transparent blur-3xl pointer-events-none animate-pulse-subtle" />
+              <div className="absolute -inset-10 bg-radial from-white/15 via-cyan-400/10 to-transparent blur-3xl pointer-events-none animate-pulse-subtle" />
               <div className="absolute -bottom-8 inset-x-2 h-36 bg-gradient-to-t from-emerald-500/20 via-cyan-500/10 to-transparent blur-2xl pointer-events-none" />
+
+              {/* Studio Pedestal Base Structure */}
+              <div className="absolute -bottom-8 inset-x-6 h-12 bg-gradient-to-b from-[#1c1c1c] via-[#0d0d0d] to-black rounded-b-3xl border-x border-b border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-5 pointer-events-none flex items-center justify-center">
+                <div className="w-3/4 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              </div>
 
               {/* Video Stage Container */}
               <div
@@ -364,11 +423,11 @@ export const HomePage: React.FC = () => {
                   }`}
                 />
 
-                {/* Live Volumetric Smoke Clouds Simulation Layer */}
+                {/* Cinematic Multi-Lighting Volumetric Smoke Simulation Engine */}
                 <SmokeCanvas />
 
                 {/* Seamless Edge Vignettes */}
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black via-black/40 to-transparent z-15" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black via-black/40 to-transparent z-15" />
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.9)] rounded-3xl pointer-events-none z-15" />
 
                 {/* Big Center Play Icon (if paused or browser blocked autoplay) */}
