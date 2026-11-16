@@ -912,6 +912,601 @@ export const PRODUCTS: Product[] = [
         colorPurchased: 'Concrete Grey, Black & Safety Orange'
       }
     ]
+  },
+  {
+    id: 'flare-nomad-suede-court',
+    name: 'FLARE Nomad Suede Court Lo',
+    modelCode: 'FLR-11-NMD',
+    collection: 'Casual Sneakers',
+    tagline: 'Architectural Scandinavian Low-Top in Slate Grey Suede with Terry Cloth Laces',
+    price: 4499,
+    originalPrice: 6499,
+    rating: 4.9,
+    reviewCount: 78,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 34,
+    description:
+      'Scandinavian minimalism reimagined with bold streetwear proportions. Handcrafted in velvety slate-grey Italian suede, bordered with sand-beige piping, and finished with plush oversized terry fleece laces over a segmented two-tone cupsole.',
+    story:
+      'Inspired by luxury European atelier footwear and modern skate architecture. Designed for discerning men who prioritize tactile textures and understated sophistication.',
+    features: [
+      'Heavyweight Italian suede upper in rich slate anthracite',
+      'Contrasting cream/sand leather piping and lateral embroidered script',
+      'Signature oversized plush boucle terry cloth fat laces',
+      'Molded two-tone durable rubber cupsole with reinforced heel clip',
+      'Butter-soft leather interior lining with memory foam collar',
+      'OrthoFoam™ ergonomic cushioning for effortless day-to-night wear'
+    ],
+    specifications: {
+      upperMaterial: 'Premium Italian Velvet Suede & Nappa Trim',
+      soleMaterial: 'Dual-Tone High-Density Vulcanized Rubber',
+      closureType: 'Fat Boucle Terry Laces (6-Eyelet System)',
+      cushioning: 'OrthoFoam™ Dual-Density Footbed',
+      weight: '430g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean with dry suede brush and suede protector spray. Keep away from direct water.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'slate-cream',
+    colors: [
+      {
+        id: 'slate-cream',
+        name: 'Anthracite Slate Grey & Sand Cream',
+        hex: '#33373E',
+        secondaryHex: '#D4C5B9',
+        image: '/images/model11-arigato-slate.jpg',
+        gallery: [
+          '/images/model11-arigato-slate.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-22',
+        author: 'Arjun Menon',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'The texture and terry laces are insane',
+        comment:
+          'Easily the most luxurious feeling sneaker in my wardrobe. The suede is ultra-plush and the chunky terry laces get compliments every single time I step out.',
+        verified: true,
+        helpfulCount: 22,
+        sizePurchased: 9,
+        colorPurchased: 'Anthracite Slate Grey & Sand Cream'
+      },
+      {
+        id: 'rev-23',
+        author: 'Siddheshwar Rao',
+        rating: 5,
+        date: 'November 12, 2026',
+        title: 'Exceptional craftsmanship and silhouette',
+        comment:
+          'Pairs amazingly with wide-leg trousers and pleated chinos. Solid weight, premium sole, and no breaking-in pain.',
+        verified: true,
+        helpfulCount: 14,
+        sizePurchased: 8,
+        colorPurchased: 'Anthracite Slate Grey & Sand Cream'
+      }
+    ]
+  },
+  {
+    id: 'flare-legacy-heritage-runner',
+    name: 'FLARE Legacy Heritage Runner',
+    modelCode: 'FLR-12-RUN',
+    collection: 'Running Sneakers',
+    tagline: 'Retro-Tech Performance Runner in Vintage Olive Suede & Breathable Mesh',
+    price: 3999,
+    originalPrice: 5799,
+    rating: 4.9,
+    reviewCount: 142,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 46,
+    description:
+      'The quintessential 2000s tech runner elevated for high-mileage urban life. Crafted with rich vintage olive-green suede overlays, open-cell breathable cream mesh, and an energy-returning cushioned midsole with segmented rubber crash pads.',
+    story:
+      'Engineered to blend archival marathon aesthetics with modern orthopedic engineering. Whether navigating bustling metro commutes or weekend coffee runs, the Legacy Heritage Runner delivers unmatched impact absorption.',
+    features: [
+      'Multi-layered vintage olive pigskin suede and ballistic air-mesh',
+      'Dual-density shock absorption midsole with TPU stability shank',
+      'Subtle metallic silver and cream detailing with tonal lace stays',
+      'Padded anti-friction performance lining with moisture-wicking sockliner',
+      'High-traction decoupled rubber outsole with multi-directional grip',
+      'Reinforced heel stabilizer for lockdown support during brisk walking'
+    ],
+    specifications: {
+      upperMaterial: 'Suede Overlays & Open-Cell Technical Mesh',
+      soleMaterial: 'Energy-Rebound EVA & Carbon Rubber Outsole',
+      closureType: 'Lace-Up (Ghillie Webbing & Eyelets)',
+      cushioning: 'ImpactGrid™ Multi-Zone Cushioning Core',
+      weight: '345g (Single shoe, Size UK 8)',
+      careInstructions: 'Wipe mesh with gentle damp cloth. Suede brush for suede overlays.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'olive-cream',
+    colors: [
+      {
+        id: 'olive-cream',
+        name: 'Vintage Olive Green & Pale Cream',
+        hex: '#556B2F',
+        secondaryHex: '#EAE5D9',
+        image: '/images/model12-runner-olive.jpg',
+        gallery: [
+          '/images/model12-runner-olive.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-24',
+        author: 'Rohan Sen',
+        rating: 5,
+        date: 'November 14, 2026',
+        title: 'Walked 15k steps on day one. Total comfort.',
+        comment:
+          'The olive green colorway looks so good with dark wash jeans and white socks. Cushioning feels cloud-like without being unstable.',
+        verified: true,
+        helpfulCount: 31,
+        sizePurchased: 10,
+        colorPurchased: 'Vintage Olive Green & Pale Cream'
+      },
+      {
+        id: 'rev-25',
+        author: 'Karthik Pillai',
+        rating: 5,
+        date: 'November 8, 2026',
+        title: 'Best lifestyle runner for the price in India',
+        comment:
+          'Breathability is fantastic in warm weather. Mesh lets air circulate freely and the olive suede gives it a luxury vibe.',
+        verified: true,
+        helpfulCount: 19,
+        sizePurchased: 9,
+        colorPurchased: 'Vintage Olive Green & Pale Cream'
+      }
+    ]
+  },
+  {
+    id: 'flare-terra-mocha-skate',
+    name: 'FLARE Terra Mocha Skate Low',
+    modelCode: 'FLR-13-TER',
+    collection: 'Casual Sneakers',
+    tagline: 'Artisanal Skateboard Low-Top in Rich Mocha Brown, Noir Black & Crisp White',
+    price: 3899,
+    originalPrice: 5499,
+    rating: 4.8,
+    reviewCount: 84,
+    isBestSeller: false,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 30,
+    description:
+      'Earthy, grounded, and street-hardened. The Terra Mocha Skate Low combines supple mocha-brown leather quarters, pitch-black suede toe mudguards, and a ribbed white platform cupsole designed for urban grip and timeless style.',
+    story:
+      'Inspired by traditional skate silhouettes reworked through an earthy coffee-and-cream palette. Built to transition seamlessly from board to boardroom casually.',
+    features: [
+      'Tri-tone color blocking in rich mocha brown, noir black, and crisp white',
+      'Heavy-duty suede toe cap for abrasion protection',
+      'Ribbed textured platform midsole with perimeter lock stitching',
+      'FASHION PROFESSIONAL SKATEBOARD padded tongue patch',
+      'Cushioned collar and heel loop for effortless slip-on action',
+      'High-grip rubber tread with deep waffle traction grooves'
+    ],
+    specifications: {
+      upperMaterial: 'Mocha Tumbled Leather & Velvet Suede Mudguard',
+      soleMaterial: 'Perimeter-Stitched Vulcanized Platform Rubber',
+      closureType: 'Heavy Flat Cotton Laces (6-Eyelet System)',
+      cushioning: 'SkateDrop™ High-Density Footbed',
+      weight: '410g (Single shoe, Size UK 8)',
+      careInstructions: 'Spot clean leather with damp cloth. Suede protector on toe.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'mocha-black-white',
+    colors: [
+      {
+        id: 'mocha-black-white',
+        name: 'Mocha Brown, Black & White',
+        hex: '#6D4C41',
+        secondaryHex: '#181818',
+        image: '/images/model13-mocha-skate.jpg',
+        gallery: [
+          '/images/model13-mocha-skate.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-26',
+        author: 'Farhan Shaikh',
+        rating: 5,
+        date: 'November 13, 2026',
+        title: 'The mocha tone is so versatile',
+        comment:
+          'Brown sneakers are hard to get right, but FLARE nailed the balance between mocha, black, and white. Sole is sturdy and looks killer with beige cargos.',
+        verified: true,
+        helpfulCount: 20,
+        sizePurchased: 8,
+        colorPurchased: 'Mocha Brown, Black & White'
+      },
+      {
+        id: 'rev-27',
+        author: 'Siddharth Rao',
+        rating: 5,
+        date: 'November 9, 2026',
+        title: 'Stout build and great ankle comfort',
+        comment:
+          'Very solid platform sole with zero wobble. The padding inside prevents any heel rubbing.',
+        verified: true,
+        helpfulCount: 11,
+        sizePurchased: 9,
+        colorPurchased: 'Mocha Brown, Black & White'
+      }
+    ]
+  },
+  {
+    id: 'flare-summit-graphic-street',
+    name: 'FLARE Summit Graphic Street Lo',
+    modelCode: 'FLR-14-SMT',
+    collection: 'Casual Sneakers',
+    tagline: 'Contemporary Streetwear Low-Top with Mountain Etching Graphic Quarters',
+    price: 3799,
+    originalPrice: 5299,
+    rating: 4.8,
+    reviewCount: 66,
+    isBestSeller: false,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 26,
+    description:
+      'Where fine art meets street culture. Featuring chocolate-brown leather overlays and contrast white perforated vamp, accented with intricate Japanese woodblock-style mountain landscape etching along the side quarters.',
+    story:
+      'Created as a wearable canvas celebrating high-altitude exploration and alpine serenity. Built with premium reinforced eyelet straps and branded WORKING utility tags.',
+    features: [
+      'Artisanal monochrome mountain etching on durable canvas side quarters',
+      'Rich chocolate brown leather overlays and padded heel counter',
+      'Micro-perforated clean white toe box for ventilation',
+      'Dual-tone rubber sole with side notch detailing',
+      'Contrast brown woven flat laces and padded tongue with SMILE patch',
+      'Shock-absorbing footbed lined with breathable athletic mesh'
+    ],
+    specifications: {
+      upperMaterial: 'Tumbled Chocolate Leather & Graphic Technical Canvas',
+      soleMaterial: 'Dual-Density Vulcanized Cupsole',
+      closureType: 'Lace-Up (6-Eyelet Reinforced Stay)',
+      cushioning: 'ComfortStep™ Memory Foam Insole',
+      weight: '395g (Single shoe, Size UK 8)',
+      careInstructions: 'Wipe with mild soapy damp cloth. Air dry away from direct heat.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'chocolate-landscape',
+    colors: [
+      {
+        id: 'chocolate-landscape',
+        name: 'Chocolate Mocha Brown & Landscape White',
+        hex: '#4E342E',
+        secondaryHex: '#FAFAFA',
+        image: '/images/model14-summit-brown.jpg',
+        gallery: [
+          '/images/model14-summit-brown.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-28',
+        author: 'Pranav Nair',
+        rating: 5,
+        date: 'November 14, 2026',
+        title: 'The etched artwork on the side is beautiful',
+        comment:
+          'Super unique design that you will not see everywhere else. The chocolate brown leather is soft and looks great in natural light.',
+        verified: true,
+        helpfulCount: 17,
+        sizePurchased: 10,
+        colorPurchased: 'Chocolate Mocha Brown & Landscape White'
+      },
+      {
+        id: 'rev-29',
+        author: 'Gautam Malhotra',
+        rating: 4,
+        date: 'November 7, 2026',
+        title: 'Great conversation starter',
+        comment:
+          'Got so many questions about where I bought these. Comfortable enough for daily wear at college.',
+        verified: true,
+        helpfulCount: 9,
+        sizePurchased: 8,
+        colorPurchased: 'Chocolate Mocha Brown & Landscape White'
+      }
+    ]
+  },
+  {
+    id: 'flare-apex-flight-retro',
+    name: 'FLARE Apex Flight Retro High',
+    modelCode: 'FLR-15-FLT',
+    collection: 'High-Top Sneakers',
+    tagline: 'Iconic 90s Basketball Silhouette in Noir Nubuck, Crisp White & Netting Mesh',
+    price: 5499,
+    originalPrice: 7999,
+    rating: 5.0,
+    reviewCount: 184,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 36,
+    description:
+      'The timeless holy grail of high-top basketball heritage. Handcrafted with velvet-touch noir black nubuck leather, stark white quarter leather underlays, iconic molded TPU lace wings, breathable quarter netting, and a visible encapsulated heel Air unit.',
+    story:
+      'A masterclass in late 80s hardwood legacy reimagined for luxury street culture. Originally engineered for gravity-defying court maneuvers, now perfected as the ultimate statement silhouette for men.',
+    features: [
+      'Velvety noir black nubuck leather and premium white tumbled leather uppers',
+      'Structural TPU molded lace wings for customized lockdown fit',
+      'Diamond-woven quarter and tongue netting for historic court authenticity',
+      'Visible heel Air-cushioning capsule for superior rebound and impact absorption',
+      'Padded high-cut collar with extended Achilles heel tab',
+      'Multi-directional herringbone rubber outsole for relentless traction'
+    ],
+    specifications: {
+      upperMaterial: '100% Premium Nubuck Leather, Full-Grain Leather & TPU Mesh',
+      soleMaterial: 'Dual-Color Sculpted Rubber with Encapsulated Air Unit',
+      closureType: 'Speed-Lace with Molded TPU Eyelet Wings',
+      cushioning: 'AirRebound™ Heel Unit & Dual-Density OrthoFoam™',
+      weight: '490g (Single shoe, Size UK 8)',
+      careInstructions: 'Use nubuck sponge for black panels. Leather cleaner for white leather.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'noir-ice-white',
+    colors: [
+      {
+        id: 'noir-ice-white',
+        name: 'Noir Black & Ice White',
+        hex: '#111111',
+        secondaryHex: '#FFFFFF',
+        image: '/images/model15-retro4-noir.jpg',
+        gallery: [
+          '/images/model15-retro4-noir.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-30',
+        author: 'Zaid Khan',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'Grail status. Build quality matches luxury standards.',
+        comment:
+          'The black nubuck is deep black and silky to the touch. The TPU wings and netting are flawless. The visible air bubble in the heel gives real bounce.',
+        verified: true,
+        helpfulCount: 42,
+        sizePurchased: 10,
+        colorPurchased: 'Noir Black & Ice White'
+      },
+      {
+        id: 'rev-31',
+        author: 'Vikramaditya Rathore',
+        rating: 5,
+        date: 'November 11, 2026',
+        title: 'Unreal presence on feet',
+        comment:
+          'Absolute showstopper sneaker. Fits true to Indian size (UK 9). Padding around the ankle makes it wearable all day.',
+        verified: true,
+        helpfulCount: 27,
+        sizePurchased: 9,
+        colorPurchased: 'Noir Black & Ice White'
+      }
+    ]
+  },
+  {
+    id: 'flare-matrix-street-high',
+    name: 'FLARE Matrix Street High-Top',
+    modelCode: 'FLR-16-MTX',
+    collection: 'High-Top Sneakers',
+    tagline: 'Futuristic Skate-High Architecture in Light Slate Grey & Pure White',
+    price: 4699,
+    originalPrice: 6599,
+    rating: 4.8,
+    reviewCount: 76,
+    isBestSeller: false,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 28,
+    description:
+      'Clean architectural lines meet modern skate dynamics. The Matrix Street High-Top pairs cool slate-grey geometric leather panels with stark white toe and collar overlays, reinforced by a lateral utility strap and a segmented shock-absorbing sole.',
+    story:
+      'Engineered for city roamers who demand the ankle protection of a skate high with the pristine aesthetic of modern streetwear. Sleek, sculptural, and unapologetically bold.',
+    features: [
+      'Layered matte slate grey and crisp white full-grain leather construction',
+      'Tactical lateral stabilizer strap with embossed FASHION SPORT branding',
+      'Anatomically contoured high-top collar with Achilles notch cushion',
+      'Contrasting black heel clip for torsional stability',
+      'Segmented perimeter-stitched rubber sole with flex grooves',
+      'Perforated toe vamp for cooling cross-ventilation'
+    ],
+    specifications: {
+      upperMaterial: 'Full-Grain Leather, Nubuck Panels & Ballistic Trim',
+      soleMaterial: 'Segmented High-Grip Vulcanized Rubber Cupsole',
+      closureType: '7-Eyelet Precision Lace System with Flat Cotton Laces',
+      cushioning: 'ImpactShield™ Skate-Grade Insole',
+      weight: '460g (Single shoe, Size UK 8)',
+      careInstructions: 'Wipe down with damp leather sponge. Store with shoe trees.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'slate-pure-white',
+    colors: [
+      {
+        id: 'slate-pure-white',
+        name: 'Light Slate Grey & Pure White',
+        hex: '#9BA3A9',
+        secondaryHex: '#FFFFFF',
+        image: '/images/model16-matrix-grey.jpg',
+        gallery: [
+          '/images/model16-matrix-grey.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-32',
+        author: 'Nikhil Thomas',
+        rating: 5,
+        date: 'November 14, 2026',
+        title: 'Minimalist high-tops done right',
+        comment:
+          'The grey and white tones match literally everything. Ankle collar is well-padded without feeling overly bulky. Love the clean futuristic lines.',
+        verified: true,
+        helpfulCount: 18,
+        sizePurchased: 9,
+        colorPurchased: 'Light Slate Grey & Pure White'
+      },
+      {
+        id: 'rev-33',
+        author: 'Sameer Chawla',
+        rating: 5,
+        date: 'November 9, 2026',
+        title: 'Super comfortable high-tops',
+        comment:
+          'Leather feels durable and broke in within a couple of hours. Sole has great traction on wet pavement.',
+        verified: true,
+        helpfulCount: 12,
+        sizePurchased: 10,
+        colorPurchased: 'Light Slate Grey & Pure White'
+      }
+    ]
+  },
+  {
+    id: 'flare-force-dual-tone-low',
+    name: 'FLARE Force Dual-Tone Low',
+    modelCode: 'FLR-17-FRC',
+    collection: 'Casual Sneakers',
+    tagline: 'Legendary Street Cupsole in Cement Heather Grey & Contrast Carbon Black',
+    price: 4199,
+    originalPrice: 5999,
+    rating: 4.9,
+    reviewCount: 110,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 40,
+    description:
+      'The quintessential street icon reimagined in a two-tone grayscale aesthetic. Featuring matte carbon-black tumbled leather quarters and collar, juxtaposed against cool cement-grey leather toe and vamp with an embroidered mini-swoosh accent and classic -AIR- cupsole.',
+    story:
+      'Honoring four decades of hip-hop and streetwear history. The Force Dual-Tone Low transforms an all-time classic into an everyday modern workhorse with unmatched durability and comfort.',
+    features: [
+      'Two-tone tumbled calfskin leather in Cement Grey & Carbon Black',
+      'Embroidered black mini-swoosh logo accent at lateral forefoot',
+      'Iconic thick perimeter-stitched rubber cupsole with -AIR- embossed badge',
+      'Perforated toe vamp for classic breathability and athletic airflow',
+      'Chunky flat black cotton laces and branded woven tongue label',
+      'Full-length internal foam cushioning with arch contouring'
+    ],
+    specifications: {
+      upperMaterial: '100% Premium Full-Grain Calfskin Leather',
+      soleMaterial: 'Perimeter-Stitched Vulcanized Rubber Cupsole with Pivot Points',
+      closureType: 'Lace-Up (8-Eyelet Classic System)',
+      cushioning: 'Full-Length OrthoFoam™ Memory Bed',
+      weight: '425g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean leather with damp microfiber cloth and leather balm.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'cement-carbon-black',
+    colors: [
+      {
+        id: 'cement-carbon-black',
+        name: 'Cement Grey & Carbon Black',
+        hex: '#B0B7BD',
+        secondaryHex: '#1C1C1C',
+        image: '/images/model17-force-cement.jpg',
+        gallery: [
+          '/images/model17-force-cement.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-34',
+        author: 'Harish Menon',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'Timeless look with modern comfort',
+        comment:
+          'The cement grey and black combo looks so clean. Way more comfortable than standard store pairs because of the memory foam footbed. Definite 5/5.',
+        verified: true,
+        helpfulCount: 25,
+        sizePurchased: 9,
+        colorPurchased: 'Cement Grey & Carbon Black'
+      },
+      {
+        id: 'rev-35',
+        author: 'Akash Varma',
+        rating: 5,
+        date: 'November 10, 2026',
+        title: 'Quality leather and solid stitching',
+        comment:
+          'Stitching around the sole is tight and clean. Leather has a nice matte grain finish that does not crease ugly.',
+        verified: true,
+        helpfulCount: 16,
+        sizePurchased: 10,
+        colorPurchased: 'Cement Grey & Carbon Black'
+      }
+    ]
   }
 ];
 
@@ -932,7 +1527,8 @@ export const COLOR_FILTERS = [
   { name: 'Red', hex: '#BA0C2F' },
   { name: 'Blue', hex: '#0A2540' },
   { name: 'Orange', hex: '#FF5722' },
-  { name: 'Grey', hex: '#8C9298' }
+  { name: 'Grey', hex: '#8C9298' },
+  { name: 'Brown', hex: '#6D4C41' }
 ];
 
 export const PRICE_RANGES = [
