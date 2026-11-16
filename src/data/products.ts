@@ -1507,6 +1507,516 @@ export const PRODUCTS: Product[] = [
         colorPurchased: 'Cement Grey & Carbon Black'
       }
     ]
+  },
+  {
+    id: 'flare-apex-drift-ae86',
+    name: 'FLARE Apex Drift Low (AE86 Edition)',
+    modelCode: 'FLR-18-DFT',
+    collection: 'Original Collection',
+    tagline: 'Touge Legend Tribute in Monochrome Noir, Tofu White & Kanji Lateral Script',
+    price: 4399,
+    originalPrice: 6199,
+    rating: 5.0,
+    reviewCount: 148,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 32,
+    description:
+      'Handcrafted homage to Japanese touge racing lore. Crafted with premium full-grain white leather, matte black toe box and swoosh, plum-purple collar lining, safety-orange heel tab, and authentic kanji lettering stamped on the lateral heel counter.',
+    story:
+      'Born from midnight downhill runs through misty mountain passes. The AE86 Drift Low captures the uncompromising balance, sharp agility, and timeless two-tone aesthetic of Japanese motorsport heritage.',
+    features: [
+      'Crisp full-grain white leather with matte black leather overlays and swoosh',
+      'Japanese touge kanji embroidery on lateral heel overlay',
+      'Contrast plum-purple collar lining with padded ankle collar',
+      'High-visibility safety orange heel accent tab and tongue label',
+      'Durable non-marking vulcanized rubber cupsole with pivot grip',
+      'OrthoFoam™ dual-density footbed for all-day street comfort'
+    ],
+    specifications: {
+      upperMaterial: '100% Full-Grain Calfskin Leather & Padded Textile Collar',
+      soleMaterial: 'Vulcanized High-Density Rubber Cupsole',
+      closureType: 'Lace-Up (7-Eyelet Precision System with Flat Black Laces)',
+      cushioning: 'OrthoFoam™ Ergonomic Memory Insole',
+      weight: '390g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean with damp cloth and mild leather balm. Store with shoe shapers.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'ae86-monochrome',
+    colors: [
+      {
+        id: 'ae86-monochrome',
+        name: 'Monochrome Panda White & Black',
+        hex: '#FFFFFF',
+        secondaryHex: '#181818',
+        image: '/images/model18-drift-ae86.jpg',
+        gallery: [
+          '/images/model18-drift-ae86.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-36',
+        author: 'Kenji Nambiar',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'Initial D vibes are immaculate. Must have for car guys.',
+        comment:
+          'The kanji detail on the heel is razor-sharp. Leather quality is leagues ahead of standard retail dunks. Fits true to size with zero heel slippage.',
+        verified: true,
+        helpfulCount: 38,
+        sizePurchased: 9,
+        colorPurchased: 'Monochrome Panda White & Black'
+      },
+      {
+        id: 'rev-37',
+        author: 'Abhinav Sen',
+        rating: 5,
+        date: 'November 12, 2026',
+        title: 'Insane detail and packaging',
+        comment:
+          'The purple collar accent and orange tab give it such an authentic touch. Turns heads every time I wear it.',
+        verified: true,
+        helpfulCount: 21,
+        sizePurchased: 10,
+        colorPurchased: 'Monochrome Panda White & Black'
+      }
+    ]
+  },
+  {
+    id: 'flare-gel-vortex-runner',
+    name: 'FLARE Gel-Vortex Metallic Runner',
+    modelCode: 'FLR-19-VTX',
+    collection: 'Running Sneakers',
+    tagline: 'Y2K High-Performance Tech Runner in Metallic Bronze & Deep Moss Mesh',
+    price: 4199,
+    originalPrice: 5899,
+    rating: 4.9,
+    reviewCount: 122,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 44,
+    description:
+      'Late 2000s tech-runner DNA reimagined with luxury metallic accents. Combines radiant metallic bronze cage overlays, open-cell deep moss breathable mesh, dual-density GEL-cushioning capsules, and a decoupled high-mileage outsole.',
+    story:
+      'Engineered at the nexus of high-speed athletics and Tokyo cyber-streetwear. Designed to absorb severe foot-strike impact while radiating an aggressive metallic aesthetic under urban lights.',
+    features: [
+      'Multi-panel metallic bronze structural cage and ballistic open-cell mesh',
+      'Dual-zone visible GEL-cushioning pods in heel and forefoot',
+      'High-torsion TPU midfoot stability truss for arch lockdown',
+      'Breathable padded mesh tongue with anatomical contouring',
+      'Reflective metallic side lines for low-light night visibility',
+      'Rugged rubber compound outsole with multi-directional flex grooves'
+    ],
+    specifications: {
+      upperMaterial: 'Metallic Polyurethane Overlays & Engineered Mesh',
+      soleMaterial: 'GEL-Infused EVA Midsole & AHAR+ Rubber Outsole',
+      closureType: 'Speed-Lacing System with Round Performance Cords',
+      cushioning: 'Dual GEL-Vortex™ Shock Dissipation Units',
+      weight: '355g (Single shoe, Size UK 8)',
+      careInstructions: 'Spot clean mesh with damp sponge. Avoid harsh chemical solvents.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'bronze-moss',
+    colors: [
+      {
+        id: 'bronze-moss',
+        name: 'Metallic Bronze & Deep Moss Black',
+        hex: '#8C7853',
+        secondaryHex: '#1A201C',
+        image: '/images/model19-metallic-bronze.jpg',
+        gallery: [
+          '/images/model19-metallic-bronze.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-38',
+        author: 'Siddharth Menon',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'Walked across the city with zero fatigue',
+        comment:
+          'The GEL cushioning in the heel is unbelievably forgiving. Metallic bronze overlays give it a unique futuristic vibe that goes crazy with acid wash denim.',
+        verified: true,
+        helpfulCount: 29,
+        sizePurchased: 10,
+        colorPurchased: 'Metallic Bronze & Deep Moss Black'
+      },
+      {
+        id: 'rev-39',
+        author: 'Rahul Kapoor',
+        rating: 5,
+        date: 'November 11, 2026',
+        title: 'Top-tier tech runner',
+        comment:
+          'Extremely light on feet and breathability is great in humid Indian weather. Build quality feels very sturdy.',
+        verified: true,
+        helpfulCount: 17,
+        sizePurchased: 8,
+        colorPurchased: 'Metallic Bronze & Deep Moss Black'
+      }
+    ]
+  },
+  {
+    id: 'flare-heritage-gum-terrace',
+    name: 'FLARE Heritage Gum Terrace Low',
+    modelCode: 'FLR-20-TRS',
+    collection: 'Original Collection',
+    tagline: 'The Quintessential Low-Profile Court Sneaker with Suede T-Toe & Honey Gum Sole',
+    price: 3899,
+    originalPrice: 5499,
+    rating: 4.9,
+    reviewCount: 165,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 52,
+    description:
+      'The timeless court silhouette that complements every outfit. Handcrafted from smooth off-white calfskin leather, light grey suede T-toe reinforcement, deep midnight-navy swoosh overlay, and an authentic sticky honey-gum rubber cupsole.',
+    story:
+      'Originally conceived for indoor racquetball and squash courts of the late 70s, now perfected as an essential wardrobe staple. Clean, effortless, and endlessly versatile.',
+    features: [
+      'Supple off-white full-grain leather upper with velvety grey suede T-toe',
+      'Contrast deep midnight-navy leather side swoosh and heel badge',
+      'Authentic non-marking honey gum rubber outsole with circular herringbone tread',
+      'Padded low-cut collar with soft breathable textile lining',
+      'Waxed flat cream cotton laces with reinforced eyelet stays',
+      'Removable anatomical OrthoFoam™ arch support footbed'
+    ],
+    specifications: {
+      upperMaterial: 'Full-Grain Calfskin Leather & Italian Suede Mudguard',
+      soleMaterial: 'Vulcanized Natural Honey Gum Rubber',
+      closureType: 'Lace-Up (7-Eyelet Precision System)',
+      cushioning: 'OrthoFoam™ Dual-Density Insole',
+      weight: '370g (Single shoe, Size UK 8)',
+      careInstructions: 'Wipe leather with damp cloth. Use suede eraser for toe overlay.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'offwhite-navy-gum',
+    colors: [
+      {
+        id: 'offwhite-navy-gum',
+        name: 'Off-White, Suede Grey & Navy Blue Gum',
+        hex: '#F7F5F0',
+        secondaryHex: '#0D2240',
+        image: '/images/model20-killshot-gum.jpg',
+        gallery: [
+          '/images/model20-killshot-gum.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-40',
+        author: 'Varun Nair',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'The perfect everyday shoe does exist',
+        comment:
+          'Matches chinos, dark denim, and shorts effortlessly. The gum sole has authentic grip and the grey suede toe looks premium.',
+        verified: true,
+        helpfulCount: 34,
+        sizePurchased: 9,
+        colorPurchased: 'Off-White, Suede Grey & Navy Blue Gum'
+      },
+      {
+        id: 'rev-41',
+        author: 'Prashant Iyer',
+        rating: 5,
+        date: 'November 10, 2026',
+        title: 'Cleanest silhouette in my rotation',
+        comment:
+          'Leather is soft right out of the box with zero stiff break-in pain. Extremely pleased with this purchase.',
+        verified: true,
+        helpfulCount: 22,
+        sizePurchased: 10,
+        colorPurchased: 'Off-White, Suede Grey & Navy Blue Gum'
+      }
+    ]
+  },
+  {
+    id: 'flare-reverse-apex-olive',
+    name: 'FLARE Reverse-Apex Low (Olive Edition)',
+    modelCode: 'FLR-21-REV',
+    collection: 'Original Collection',
+    tagline: 'Iconic Street Silhouette Featuring Suede Noir Quarters & Reverse Olive Swoosh',
+    price: 5299,
+    originalPrice: 7499,
+    rating: 5.0,
+    reviewCount: 215,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 38,
+    description:
+      'The crown jewel of modern hype sneaker culture. Engineered with velvety noir black suede underlays, sail white tumbled leather overlays, an oversized reversed military-olive swoosh, contrast red embroidered accents, and an aged yellow-cream cupsole.',
+    story:
+      'Inspired by Texas music festival energy and rebellious deconstruction. Every stitch balances heritage hardwood court DNA with subversive high-fashion streetwear swagger.',
+    features: [
+      'Velvety noir black suede quarters with sail white tumbled leather framing',
+      'Signature oversized inverted military olive leather swoosh on lateral side',
+      'Vintage aged yellowed rubber midsole with perimeter lock stitching',
+      'Vibrant red embroidered cactus & wings branding on heel counters',
+      'Chunky flat waxed black cotton laces with spare olive laces included',
+      'OrthoFoam™ high-resilience footbed engineered for all-day comfort'
+    ],
+    specifications: {
+      upperMaterial: 'Premium Suede Noir, Full-Grain Tumbled Leather & Olive Trim',
+      soleMaterial: 'Vintage-Toned Vulcanized Rubber Cupsole',
+      closureType: 'Lace-Up (8-Eyelet Precision System)',
+      cushioning: 'ImpactShield™ Dual-Layer Memory Foam',
+      weight: '415g (Single shoe, Size UK 8)',
+      careInstructions: 'Dry brush suede quarters. Use leather balm on sail leather.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'noir-reverse-olive',
+    colors: [
+      {
+        id: 'noir-reverse-olive',
+        name: 'Noir Black, Sail White & Military Olive Green',
+        hex: '#111111',
+        secondaryHex: '#556B2F',
+        image: '/images/model21-reverse-olive.jpg',
+        gallery: [
+          '/images/model21-reverse-olive.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-42',
+        author: 'Devendra Singhania',
+        rating: 5,
+        date: 'November 16, 2026',
+        title: 'Flawless execution. The reverse olive swoosh is legendary.',
+        comment:
+          'Easily the most hyped sneaker in the FLARE collection. Black suede is rich and deep, sail leather is butter soft, and the aged midsole finishes it off perfectly.',
+        verified: true,
+        helpfulCount: 46,
+        sizePurchased: 10,
+        colorPurchased: 'Noir Black, Sail White & Military Olive Green'
+      },
+      {
+        id: 'rev-43',
+        author: 'Aakash Verma',
+        rating: 5,
+        date: 'November 13, 2026',
+        title: 'Grail quality without the crazy reseller price',
+        comment:
+          'Stitching is immaculate. Wore it to a sneaker convention and got non-stop questions. Super comfortable footbed.',
+        verified: true,
+        helpfulCount: 31,
+        sizePurchased: 9,
+        colorPurchased: 'Noir Black, Sail White & Military Olive Green'
+      }
+    ]
+  },
+  {
+    id: 'flare-force-pine-street',
+    name: 'FLARE Force Pine Street Low',
+    modelCode: 'FLR-22-PNE',
+    collection: 'Casual Sneakers',
+    tagline: 'Urban Icon in Deep Forest Pine Green, Clean Chalk White & Obsidian Black',
+    price: 4299,
+    originalPrice: 5999,
+    rating: 4.9,
+    reviewCount: 98,
+    isBestSeller: false,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 36,
+    description:
+      'Bold forestry hues engineered for street swagger. Combines deep pine-green full-grain leather toe guards and lace stays, crisp white side quarters, obsidian-black heel collar, and a thick perimeter-stitched rubber cupsole.',
+    story:
+      'Crafted for gentlemen who appreciate rich botanical green tones merged with the timeless street cupsole silhouette. Built tough for daily pavement grinding and effortless casual styling.',
+    features: [
+      'Supple full-grain calfskin leather in Deep Forest Pine Green & Chalk White',
+      'Obsidian black contrast heel tab and lateral swoosh branding',
+      'Classic perforated toe box for cooling ventilation',
+      'Thick perimeter-stitched street cupsole with -AIR- embossed badge',
+      'Flat forest-green cotton laces with metal reinforced eyelets',
+      'Ergonomic memory foam footbed with enhanced arch contour'
+    ],
+    specifications: {
+      upperMaterial: '100% Full-Grain Calfskin Leather',
+      soleMaterial: 'Perimeter-Stitched Vulcanized Rubber Cupsole',
+      closureType: 'Lace-Up (8-Eyelet Classic System)',
+      cushioning: 'OrthoFoam™ Full-Length Memory Cushioning',
+      weight: '430g (Single shoe, Size UK 8)',
+      careInstructions: 'Clean with damp cloth and leather conditioner. Air dry naturally.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'pine-white-black',
+    colors: [
+      {
+        id: 'pine-white-black',
+        name: 'Forest Pine Green, White & Black',
+        hex: '#1E4D2B',
+        secondaryHex: '#FFFFFF',
+        image: '/images/model22-pine-street.jpg',
+        gallery: [
+          '/images/model22-pine-street.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-44',
+        author: 'Rishi Mohan',
+        rating: 5,
+        date: 'November 15, 2026',
+        title: 'The pine green shade is incredible in person',
+        comment:
+          'Looks fantastic with off-white jeans and a dark green tee. Very solid construction and comfortable for whole-day wear.',
+        verified: true,
+        helpfulCount: 23,
+        sizePurchased: 9,
+        colorPurchased: 'Forest Pine Green, White & Black'
+      },
+      {
+        id: 'rev-45',
+        author: 'Anand Kulkarni',
+        rating: 5,
+        date: 'November 12, 2026',
+        title: 'Great leather and solid stitching',
+        comment:
+          'Sole is thick and provides good height and cushioning. Does not crease awkwardly.',
+        verified: true,
+        helpfulCount: 15,
+        sizePurchased: 10,
+        colorPurchased: 'Forest Pine Green, White & Black'
+      }
+    ]
+  },
+  {
+    id: 'flare-480-vintage-court',
+    name: 'FLARE 480 Vintage Court Low',
+    modelCode: 'FLR-23-CRT',
+    collection: 'Original Collection',
+    tagline: 'Classic Hardwood Basketball Heritage in Deep Navy Suede & Cream Leather',
+    price: 3999,
+    originalPrice: 5699,
+    rating: 4.8,
+    reviewCount: 134,
+    isBestSeller: true,
+    isFeatured: true,
+    isNewArrival: true,
+    stockQuantity: 48,
+    description:
+      'Straight from the 1983 hardwood archives. Handcrafted with butter-soft deep navy blue suede overlays, perforated vintage-cream leather toe box and collar, signature cream saddle badge, and an aged yellow-tinted cupsole.',
+    story:
+      'Born on the storied basketball courts of New England. Stripped of loud gimmicks, engineered for authentic collegiate court style, supreme foot support, and timeless vintage prestige.',
+    features: [
+      'Rich deep navy blue suede overlays and vintage cream leather vamp',
+      'Micro-perforated toe box and side quarters for optimal airflow',
+      'Iconic vintage cream saddle badge with tonal stitch detailing',
+      'Aged yellow-cream vulcanized rubber cupsole with pivot circle traction',
+      'Padded low-cut collar and woven tongue patch with classic court numbering',
+      'Removable OrthoFoam™ arch-cushioned footbed'
+    ],
+    specifications: {
+      upperMaterial: 'Premium Suede Overlays & Tumbled Nappa Leather',
+      soleMaterial: 'Vintage-Toned Non-Marking Rubber Cupsole',
+      closureType: 'Lace-Up (7-Eyelet Precision System with Flat Cream Laces)',
+      cushioning: 'OrthoFoam™ Basketball Court Cushioning',
+      weight: '400g (Single shoe, Size UK 8)',
+      careInstructions: 'Brush suede with dry soft bristle brush. Wipe leather with damp cloth.',
+      countryOfOrigin: 'Designed in India / Ethically Handcrafted'
+    },
+    shipping: {
+      dispatchTime: 'Dispatched within 24 hours',
+      deliveryEstimate: '3-5 Business Days across India',
+      shippingFee: 'Free Express Shipping on prepaid orders',
+      returns: '7-Day Doorstep Returns & Size Exchanges'
+    },
+    availableSizes: [6, 7, 8, 9, 10, 11],
+    defaultColorId: 'navy-vintage-cream',
+    colors: [
+      {
+        id: 'navy-vintage-cream',
+        name: 'Deep Navy Blue & Vintage Cream White',
+        hex: '#15284F',
+        secondaryHex: '#F4F0E8',
+        image: '/images/model23-court-480.jpg',
+        gallery: [
+          '/images/model23-court-480.jpg'
+        ],
+        inStock: true
+      }
+    ],
+    demoReviews: [
+      {
+        id: 'rev-46',
+        author: 'Raghavan Pillai',
+        rating: 5,
+        date: 'November 16, 2026',
+        title: 'Authentic 80s court silhouette. Pure perfection.',
+        comment:
+          'The navy suede paired with the aged cream sole gives this shoe so much character. Wore it with grey sweatpants and white socks like the lookbook. 10/10.',
+        verified: true,
+        helpfulCount: 37,
+        sizePurchased: 10,
+        colorPurchased: 'Deep Navy Blue & Vintage Cream White'
+      },
+      {
+        id: 'rev-47',
+        author: 'Karan Mehra',
+        rating: 5,
+        date: 'November 11, 2026',
+        title: 'Incredible comfort and retro style',
+        comment:
+          'Much lighter than other court shoes. Arch support is noticeable and keeps feet comfortable even after walking all day.',
+        verified: true,
+        helpfulCount: 20,
+        sizePurchased: 9,
+        colorPurchased: 'Deep Navy Blue & Vintage Cream White'
+      }
+    ]
   }
 ];
 
