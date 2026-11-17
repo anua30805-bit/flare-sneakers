@@ -27,8 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
     { label: 'HOME', path: '/' },
     { label: 'SHOP', path: '/shop' },
     { label: 'COLLECTIONS', path: '/shop' },
-    { label: 'ABOUT', path: '/about' },
-    { label: 'CONTACT', path: '/contact' }
+    { label: 'ABOUT & CONTACT', path: '/about' }
   ];
 
   return (
@@ -106,6 +105,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
               const isActive =
                 link.path === '/'
                   ? currentRoute === 'home'
+                  : link.path === '/about'
+                  ? currentRoute === 'about' || currentRoute === 'contact'
                   : currentRoute === link.path.replace('/', '');
 
               const baseText =

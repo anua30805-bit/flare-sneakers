@@ -26,11 +26,8 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const id = cleanPath.replace('/product/', '').split('?')[0];
       return { route: 'product', id };
     }
-    if (cleanPath === '/about') {
+    if (cleanPath === '/about' || cleanPath === '/contact') {
       return { route: 'about', id: null };
-    }
-    if (cleanPath === '/contact') {
-      return { route: 'contact', id: null };
     }
     // Fallback to home
     return { route: 'home', id: null };

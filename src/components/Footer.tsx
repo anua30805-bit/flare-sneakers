@@ -177,7 +177,7 @@ export const Footer: React.FC = () => {
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate('/contact')} className="hover:text-white transition-colors">
+                <button onClick={() => navigate('/about')} className="hover:text-white transition-colors">
                   Contact Concierge
                 </button>
               </li>
